@@ -203,6 +203,12 @@ const showingNavigationDropdown = ref(false);
             <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
                 <slot />
             </main>
+
+            <footer class="mt-8 bg-white border-b border-gray-100">
+                <div class="max-w-7xl mx-auto p-4 sm:px-6 lg:px-8">
+                    <Link :href="route('post.index')">ITForum</Link>
+                </div>
+            </footer>
         </div>
     </div>
 </template>
