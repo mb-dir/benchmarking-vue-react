@@ -16,7 +16,23 @@ class DatabaseSeeder extends Seeder
         $users = User::factory()->count(2)->create();
 
         // Create categories
-        $categories = collect(['Programowanie', 'Sieci', 'Hardware'])->map(function ($name) {
+        $categories = collect([
+            'Programowanie',
+            'Sieci',
+            'Sprzęt',
+            'Cyberbezpieczeństwo',
+            'Bazy danych',
+            'Projektowanie interfejsów',
+            'Sztuczna inteligencja',
+            'Grafika komputerowa',
+            'Systemy operacyjne',
+            'Rozwój oprogramowania',
+            'Internet rzeczy (IoT)',
+            'Analiza danych',
+            'Inżynieria oprogramowania',
+            'Obliczenia w chmurze',
+            'Handel elektroniczny'
+        ])->map(function ($name) {
             return Category::create(['name' => $name]);
         });
 
