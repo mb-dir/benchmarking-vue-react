@@ -16,6 +16,13 @@ class PostController extends Controller
         $categories = Category::all();
         $posts = Post::with(['user', 'tags', 'categories'])->paginate(5);
 
-        return Inertia::render('Posts', compact('canLogin', 'canRegister', 'categories', 'posts'));
+        return Inertia::render('Posts/Index', compact('canLogin', 'canRegister', 'categories', 'posts'));
+    }
+
+    public function show(Post $post){
+
+        $post->load('user', 'comments.user', 'categories', 'tags');
+        
+        return Inertia::render('Posts/Show', compact('post'));
     }
 }

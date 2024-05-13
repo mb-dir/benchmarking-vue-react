@@ -26,6 +26,6 @@ class RegistrationTest extends TestCase
         ]);
 
         $this->assertAuthenticated();
-        $response->assertRedirect(route('post.index', absolute: false));
+        $response->assertRedirect(route('posts.index', absolute: false));
     }
 }

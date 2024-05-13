@@ -38,7 +38,10 @@ defineProps({
             <div class="grid grid-cols-1 gap-6">
                 <!-- Iterate through posts -->
                 <template v-for="post in posts.data" :key="post.id">
-                    <Link class="bg-white rounded-lg shadow-md p-4 w-full">
+                    <Link
+                        :href="route('posts.show', { post })"
+                        class="bg-white rounded-lg shadow-md p-4 w-full"
+                    >
                         <h3 class="text-lg font-semibold mb-2">
                             {{ post.title }}
                         </h3>

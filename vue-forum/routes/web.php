@@ -6,7 +6,10 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', [PostController::class, 'index'])->name('post.index');
+Route::redirect('/', '/posts');
+
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
