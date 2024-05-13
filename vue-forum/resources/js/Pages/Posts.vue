@@ -1,10 +1,10 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
-import { Link } from "@inertiajs/vue3";
+import { Link, router } from "@inertiajs/vue3";
 
 defineProps({
     categories: Array,
-    posts: Array,
+    posts: Object,
 });
 </script>
 
@@ -37,7 +37,7 @@ defineProps({
             <!-- Post Listings -->
             <div class="grid grid-cols-1 gap-6">
                 <!-- Iterate through posts -->
-                <template v-for="post in posts" :key="post.id">
+                <template v-for="post in posts.data" :key="post.id">
                     <Link class="bg-white rounded-lg shadow-md p-4 w-full">
                         <h3 class="text-lg font-semibold mb-2">
                             {{ post.title }}
@@ -70,6 +70,32 @@ defineProps({
                         <!-- Add more details or links if needed -->
                     </Link>
                 </template>
+
+                <div
+                    v-if="posts.last_page > 1"
+                    class="pagination flex justify-center items-center mt-8"
+                >
+                    <template v-for="link in posts.links" :key="link.label">
+                        <button
+                            v-if="link.url"
+                            class="px-3 py-1 bg-white text-black rounded focus:outline-none mx-1"
+                            :class="{
+                                'border-solid border-2 border-gray-200':
+                                    link.active,
+                            }"
+                            @click="router.visit(link.url)"
+                        >
+                            <span v-html="link.label" />
+                        </button>
+                        <button
+                            v-else
+                            class="px-3 py-1 bg-gray-300 text-gray-500 rounded cursor-not-allowed mx-1"
+                            disabled
+                        >
+                            <span v-html="link.label" />
+                        </button>
+                    </template>
+                </div>
             </div>
         </div>
     </AppLayout>

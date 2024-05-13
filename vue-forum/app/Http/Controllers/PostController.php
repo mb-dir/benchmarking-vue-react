@@ -14,7 +14,7 @@ class PostController extends Controller
         $canLogin = Route::has('login');
         $canRegister = Route::has('register');
         $categories = Category::all();
-        $posts = Post::with(['user', 'tags', 'categories'])->get();
+        $posts = Post::with(['user', 'tags', 'categories'])->paginate(5);
 
         return Inertia::render('Posts', compact('canLogin', 'canRegister', 'categories', 'posts'));
     }
