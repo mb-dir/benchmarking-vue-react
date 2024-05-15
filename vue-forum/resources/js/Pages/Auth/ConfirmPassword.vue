@@ -19,16 +19,15 @@ const submit = () => {
 
 <template>
     <AppLayout>
-        <Head title="Confirm Password" />
+        <Head title="Potwierdź hasło" />
 
         <div class="mb-4 text-sm text-gray-600">
-            This is a secure area of the application. Please confirm your
-            password before continuing.
+            Aby kontynuować potwerdź hasło.
         </div>
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="password" value="Password" />
+                <InputLabel for="password" value="Hasło" />
                 <TextInput
                     id="password"
                     type="password"
@@ -47,7 +46,7 @@ const submit = () => {
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
-                    Confirm
+                    Potwierdź
                 </PrimaryButton>
             </div>
         </form>

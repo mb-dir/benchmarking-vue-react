@@ -16,12 +16,12 @@ defineProps({
 </script>
 
 <template>
-    <Head title="Profile" />
+    <Head title="Twój profil" />
 
     <AppLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Profile
+                Twój profil
             </h2>
         </template>
 

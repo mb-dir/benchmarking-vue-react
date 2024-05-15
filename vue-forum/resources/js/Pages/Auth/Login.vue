@@ -50,7 +50,7 @@ const submit = () => {
                 </div>
 
                 <div class="mt-4">
-                    <InputLabel for="password" value="Password" />
+                    <InputLabel for="password" value="Hasło" />
 
                     <TextInput
                         id="password"
@@ -77,6 +77,7 @@ const submit = () => {
                 </div>
 
                 <div class="flex items-center justify-end mt-4">
+                    <!-- TODO -->
                     <!-- <Link
                         v-if="canResetPassword"
                         :href="route('password.request')"
