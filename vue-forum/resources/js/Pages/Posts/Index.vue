@@ -30,9 +30,28 @@ defineProps({
 
         <!-- Post Section Header -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-4">
-                Najnowsze posty
-            </h2>
+            <div class="p-6 flex justify-between items-center">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                    Najnowsze posty
+                </h2>
+                <div>
+                    <Link
+                        v-if="$page.props.auth.user"
+                        :href="route('posts.create')"
+                        class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+                    >
+                        Dodaj post
+                    </Link>
+                    <div v-else>
+                        <Link
+                            :href="route('login')"
+                            class="text-blue-700 underline hover:text-blue-500"
+                        >
+                            Zaloguj się</Link
+                        >, aby dodać post
+                    </div>
+                </div>
+            </div>
 
             <!-- Post Listings -->
             <div class="grid grid-cols-1 gap-6">
