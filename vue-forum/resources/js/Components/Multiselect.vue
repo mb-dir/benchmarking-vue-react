@@ -11,7 +11,7 @@ const isOpen = ref(false);
 const selectedOptionsText = computed(() => {
     if (model.value.length === 0) {
         return "Wybierz opcje";
-    } else if (model.value.length > 0 && model.value.length <= 3) {
+    } else if (model.value.length > 0 && model.value.length <= 4) {
         return model.value.map((option) => option.name).join(", ");
     } else {
         return `Wybrano ${model.value.length} opcji`;

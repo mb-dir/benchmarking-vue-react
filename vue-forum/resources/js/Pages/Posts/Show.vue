@@ -1,9 +1,10 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
+import PostLabels from "../../Components/PostLabels.vue";
 import { useForm, Link } from "@inertiajs/vue3";
 
 defineProps({
-    post: Object,
+    post: { type: Object, required: true },
 });
 
 const form = useForm({ content: "" });
@@ -32,21 +33,13 @@ const form = useForm({ content: "" });
             <!-- Categories -->
             <div class="mt-4">
                 <h2 class="text-xl font-semibold">Kategorie:</h2>
-                <ul class="list-disc ml-6">
-                    <li v-for="category in post.categories" :key="category.id">
-                        {{ category.name }}
-                    </li>
-                </ul>
+                <PostLabels :labels="post.categories" />
             </div>
 
             <!-- Tags -->
             <div class="mt-4">
                 <h2 class="text-xl font-semibold">Tagi:</h2>
-                <ul class="list-disc ml-6">
-                    <li v-for="tag in post.tags" :key="tag.id">
-                        {{ tag.name }}
-                    </li>
-                </ul>
+                <PostLabels :labels="post.tags" secondary />
             </div>
 
             <!-- Comments Section -->

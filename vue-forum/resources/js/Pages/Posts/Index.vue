@@ -1,5 +1,6 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
+import PostLabels from "../../Components/PostLabels.vue";
 import { Link, router } from "@inertiajs/vue3";
 
 defineProps({
@@ -67,29 +68,12 @@ defineProps({
                         <p class="text-gray-600">Autor: {{ post.user.name }}</p>
                         <p class="text-gray-600">
                             Kategorie:
-                            <template
-                                v-for="(category, index) in post.categories"
-                                :key="category.id"
-                            >
-                                {{ category.name }}
-                                <span v-if="index < post.categories.length - 1"
-                                    >,
-                                </span>
-                            </template>
+                            <PostLabels :labels="post.categories" />
                         </p>
                         <p class="text-gray-600">
                             Tagi:
-                            <template
-                                v-for="(tag, index) in post.tags"
-                                :key="tag.id"
-                            >
-                                {{ tag.name }}
-                                <span v-if="index < post.tags.length - 1"
-                                    >,
-                                </span>
-                            </template>
+                            <PostLabels :labels="post.tags" secondary />
                         </p>
-                        <!-- Add more details or links if needed -->
                     </Link>
                 </template>
 

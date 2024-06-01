@@ -53,7 +53,7 @@ const form = useForm({
             </div>
 
             <div>
-                <InputLabel for="email" value="Nazwisko" />
+                <InputLabel for="email" value="Email" />
 
                 <TextInput
                     id="email"
