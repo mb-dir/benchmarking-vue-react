@@ -21,11 +21,18 @@ defineProps({
             >
                 <template v-for="category in categories">
                     <Link
+                        :href="route('posts.index', { category: category.id })"
                         class="bg-white text-center rounded-lg shadow-md py-2 px-4 flex items-center justify-center font-semibold"
                     >
                         {{ category.name }}
                     </Link>
                 </template>
+                <Link
+                    :href="route('posts.index')"
+                    class="bg-white text-center rounded-lg shadow-md py-2 px-4 flex items-center justify-center font-semibold"
+                >
+                    Wszystkie
+                </Link>
             </div>
         </div>
 
@@ -55,7 +62,7 @@ defineProps({
             </div>
 
             <!-- Post Listings -->
-            <div class="grid grid-cols-1 gap-6">
+            <div class="grid grid-cols-1 gap-6" v-if="posts.data.length">
                 <!-- Iterate through posts -->
                 <template v-for="post in posts.data" :key="post.id">
                     <Link
@@ -102,6 +109,11 @@ defineProps({
                         </button>
                     </template>
                 </div>
+            </div>
+            <div v-else class="flex justify-center items-center h-64">
+                <p class="text-gray-600 text-lg font-semibold">
+                    Brak danych spełniających podane filtry
+                </p>
             </div>
         </div>
     </AppLayout>

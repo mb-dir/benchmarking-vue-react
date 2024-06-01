@@ -12,12 +12,25 @@ use Inertia\Inertia;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $categoryId = $request->category;
         $canLogin = Route::has('login');
         $canRegister = Route::has('register');
         $categories = Category::all();
-        $posts = Post::with(['user', 'tags', 'categories'])->orderBy('created_at', 'desc')->paginate(5);
+
+        // Build the query
+        $query = Post::with(['user', 'tags', 'categories'])->orderBy('created_at', 'desc');
+
+        // If category ID exists, filter the posts by category
+        if ($categoryId) {
+            $query->whereHas('categories', function($q) use ($categoryId) {
+                $q->where('categories.id', $categoryId);
+            });
+        }
+
+        // Paginate the results
+        $posts = $query->paginate(5);
 
         return Inertia::render('Posts/Index', compact('canLogin', 'canRegister', 'categories', 'posts'));
     }
