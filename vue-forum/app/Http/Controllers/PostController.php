@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -38,8 +39,26 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'tags' => 'required|array',
+            'categories' => 'required|array',
+            'tags.*.id' => 'required|integer|exists:tags,id',
+            'categories.*.id' => 'required|integer|exists:categories,id',
+        ]);
 
-        return Inertia::render('Posts/Create', compact('categories', 'tags'));
+        $post = Post::create([
+            'title' => $validatedData['title'],
+            'content' => $validatedData['content'],
+            'user_id' => Auth::id(),
+        ]);
+        
+
+        // m2m ralation
+        $post->tags()->sync(array_column($validatedData['tags'], 'id'));
+        $post->categories()->sync(array_column($validatedData['categories'], 'id'));
+
+        return redirect()->route('posts.show', ['post' => $post->id]);
     }
 }
