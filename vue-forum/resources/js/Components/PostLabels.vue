@@ -1,7 +1,8 @@
 <script setup>
+import { Link } from "@inertiajs/vue3";
 defineProps({
     labels: { type: Array, required: true },
-    secondary: { type: Boolean, default: false },
+    isForTags: { type: Boolean, default: false },
 });
 </script>
 
@@ -10,10 +11,18 @@ defineProps({
         <li
             v-for="label in labels"
             :key="label.id"
-            :class="secondary ? 'bg-orange-500' : 'bg-blue-500'"
+            :class="isForTags ? 'bg-orange-500' : 'bg-blue-500'"
             class="rounded-lg px-4 mb-2 text-neutral-50"
         >
-            {{ label.name }}
+            <Link
+                v-if="isForTags"
+                :href="route('posts.index', { tag: label.id })"
+            >
+                {{ label.name }}</Link
+            >
+            <Link v-else :href="route('posts.index', { category: label.id })">
+                {{ label.name }}</Link
+            >
         </li>
     </ul>
 </template>

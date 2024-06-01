@@ -15,6 +15,7 @@ class PostController extends Controller
     public function index(Request $request)
     {
         $categoryId = $request->category;
+        $tagId = $request->tag;
         $canLogin = Route::has('login');
         $canRegister = Route::has('register');
         $categories = Category::all();
@@ -26,6 +27,13 @@ class PostController extends Controller
         if ($categoryId) {
             $query->whereHas('categories', function($q) use ($categoryId) {
                 $q->where('categories.id', $categoryId);
+            });
+        }
+
+        // If tag ID exists, filter the posts by tag
+        if ($tagId) {
+            $query->whereHas('tags', function($q) use ($tagId) {
+                $q->where('tags.id', $tagId);
             });
         }
 

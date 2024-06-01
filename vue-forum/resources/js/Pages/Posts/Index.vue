@@ -79,7 +79,7 @@ defineProps({
                         </p>
                         <p class="text-gray-600">
                             Tagi:
-                            <PostLabels :labels="post.tags" secondary />
+                            <PostLabels :labels="post.tags" isForTags />
                         </p>
                     </Link>
                 </template>
