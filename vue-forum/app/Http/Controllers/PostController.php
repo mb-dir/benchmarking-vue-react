@@ -16,8 +16,6 @@ class PostController extends Controller
     {
         $categoryId = $request->category;
         $tagId = $request->tag;
-        $canLogin = Route::has('login');
-        $canRegister = Route::has('register');
         $categories = Category::all();
 
         // Build the query
@@ -40,7 +38,7 @@ class PostController extends Controller
         // Paginate the results
         $posts = $query->paginate(5);
 
-        return Inertia::render('Posts/Index', compact('canLogin', 'canRegister', 'categories', 'posts'));
+        return Inertia::render('Posts/Index', compact('categories', 'posts', 'categoryId'));
     }
 
     public function show(Post $post)

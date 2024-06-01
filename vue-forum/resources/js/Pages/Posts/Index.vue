@@ -4,8 +4,9 @@ import PostLabels from "../../Components/PostLabels.vue";
 import { Link, router } from "@inertiajs/vue3";
 
 defineProps({
-    categories: Array,
-    posts: Object,
+    categories: { type: Array, required: true },
+    posts: { type: Object, required: true },
+    categoryId: { type: String },
 });
 </script>
 
@@ -23,6 +24,7 @@ defineProps({
                     <Link
                         :href="route('posts.index', { category: category.id })"
                         class="bg-white text-center rounded-lg shadow-md py-2 px-4 flex items-center justify-center font-semibold"
+                        :class="{ 'bg-blue-200': +categoryId === category.id }"
                     >
                         {{ category.name }}
                     </Link>
@@ -30,6 +32,7 @@ defineProps({
                 <Link
                     :href="route('posts.index')"
                     class="bg-white text-center rounded-lg shadow-md py-2 px-4 flex items-center justify-center font-semibold"
+                    :class="{ 'bg-blue-200': !categoryId }"
                 >
                     Wszystkie
                 </Link>
@@ -72,7 +75,23 @@ defineProps({
                         <h3 class="text-lg font-semibold mb-2">
                             {{ post.title }}
                         </h3>
-                        <p class="text-gray-600">Autor: {{ post.user.name }}</p>
+
+                        <p
+                            class="text-gray-600"
+                            :class="{
+                                'text-blue-600':
+                                    post.user.id ===
+                                    $page.props?.auth?.user?.id,
+                            }"
+                        >
+                            Autor: {{ post.user.name }}
+                            <span
+                                v-if="
+                                    post.user.id === $page.props?.auth?.user?.id
+                                "
+                                >(Twój post)</span
+                            >
+                        </p>
                         <p class="text-gray-600">
                             Kategorie:
                             <PostLabels :labels="post.categories" />
