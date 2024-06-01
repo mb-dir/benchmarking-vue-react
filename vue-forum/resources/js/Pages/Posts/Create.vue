@@ -1,9 +1,10 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
 import Multiselect from "../../Components/Multiselect.vue";
-import { Link, useForm, Head } from "@inertiajs/vue3";
+import { useForm, Head } from "@inertiajs/vue3";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 defineProps({
     categories: Array,
@@ -16,6 +17,10 @@ const form = useForm({
     tags: [],
     categories: [],
 });
+
+const submit = () => {
+    form.post(route("posts.store"));
+};
 </script>
 
 <template>
@@ -58,44 +63,25 @@ const form = useForm({
                 <div class="mt-4">
                     <InputLabel for="category" value="Wybierz kategorie" />
 
-                    <Multiselect :options="categories" />
+                    <Multiselect
+                        :options="categories"
+                        v-model="form.categories"
+                    />
                 </div>
 
                 <div class="mt-4">
-                    <InputLabel
-                        for="password_confirmation"
-                        value="Potwierdź hasło"
-                    />
+                    <InputLabel for="tags" value="Wybierz tagi" />
 
-                    <TextInput
-                        id="password_confirmation"
-                        type="password"
-                        class="mt-1 block w-full"
-                        v-model="form.password_confirmation"
-                        required
-                        autocomplete="new-password"
-                    />
-
-                    <InputError
-                        class="mt-2"
-                        :message="form.errors.password_confirmation"
-                    />
+                    <Multiselect :options="tags" v-model="form.tags" />
                 </div>
 
                 <div class="flex items-center justify-end mt-4">
-                    <Link
-                        :href="route('login')"
-                        class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                        Masz już konto?
-                    </Link>
-
                     <PrimaryButton
                         class="ms-4"
                         :class="{ 'opacity-25': form.processing }"
                         :disabled="form.processing"
                     >
-                        Zarejestruj się
+                        Dodaj
                     </PrimaryButton>
                 </div>
             </div>

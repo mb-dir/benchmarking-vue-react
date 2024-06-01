@@ -35,4 +35,11 @@ class PostController extends Controller
 
         return Inertia::render('Posts/Create', compact('categories', 'tags'));
     }
+
+    public function store(Request $request)
+    {
+        dd($request);
+
+        return Inertia::render('Posts/Create', compact('categories', 'tags'));
+    }
 }
