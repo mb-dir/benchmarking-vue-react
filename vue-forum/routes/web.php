@@ -13,6 +13,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
     Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comment.store');
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
     Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');

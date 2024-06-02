@@ -16,15 +16,37 @@ const form = useForm({ content: "" });
             class="max-w-7xl mx-auto bg-white rounded-lg p-8 sm:px-6 lg:px-8 mt-8"
         >
             <!-- Post Title -->
-            <h1 class="text-3xl font-semibold">{{ post.title }}</h1>
+            <div class="flex justify-between items-start">
+                <h1 class="text-3xl font-semibold">
+                    {{ post.title }}
+                </h1>
+                <div
+                    v-if="post.user.id === $page.props?.auth?.user?.id"
+                    class="flex space-x-2"
+                >
+                    <button
+                        class="bg-blue-500 text-white py-1 px-3 rounded-lg hover:bg-blue-600"
+                    >
+                        Edytuj
+                    </button>
+                    <button
+                        @click="router.delete(route('posts.destroy', { post }))"
+                        class="bg-red-500 text-white py-1 px-3 rounded-lg hover:bg-red-600"
+                    >
+                        Usuń
+                    </button>
+                </div>
+            </div>
 
             <!-- Post Meta Information -->
             <div class="text-gray-600 mt-2">
-                <p>Autor: {{ post.user.name }}</p>
                 <p>
-                    Dodano:
-                    {{ new Date(post.created_at).toLocaleString() }}
+                    Autor: {{ post.user.name }}
+                    <span v-if="post.user.id === $page.props?.auth?.user?.id"
+                        >(Twój post)</span
+                    >
                 </p>
+                <p>Dodano: {{ new Date(post.created_at).toLocaleString() }}</p>
             </div>
 
             <!-- Post Content -->
@@ -59,7 +81,7 @@ const form = useForm({ content: "" });
                                 {{ comment.user.name }}
                                 <span
                                     v-if="
-                                        post.user.id ===
+                                        comment.user.id ===
                                         $page.props?.auth?.user?.id
                                     "
                                     >(Twój komentarz)</span
@@ -90,9 +112,7 @@ const form = useForm({ content: "" });
                             <button
                                 @click="
                                     router.delete(
-                                        route('comment.destroy', {
-                                            comment,
-                                        })
+                                        route('comment.destroy', { comment })
                                     )
                                 "
                                 class="bg-red-500 text-white py-1 px-3 rounded-lg hover:bg-red-600"
