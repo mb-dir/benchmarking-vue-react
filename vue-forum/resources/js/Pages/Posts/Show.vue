@@ -1,7 +1,7 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
 import PostLabels from "../../Components/PostLabels.vue";
-import { useForm, Link } from "@inertiajs/vue3";
+import { useForm, Link, router } from "@inertiajs/vue3";
 
 defineProps({
     post: { type: Object, required: true },
@@ -52,17 +52,58 @@ const form = useForm({ content: "" });
                     <div
                         v-for="comment in post.comments"
                         :key="comment.id"
-                        class="border-t border-gray-200 mt-4 p-4"
+                        class="border-t border-gray-200 mt-4 p-4 flex justify-between"
                     >
-                        <p class="font-semibold">{{ comment.user.name }}</p>
-                        <p>{{ comment.content }}</p>
-                        <p class="text-gray-600">
-                            Dodano:
-                            {{ new Date(comment.created_at).toLocaleString() }}
-                        </p>
+                        <div>
+                            <p class="font-semibold">
+                                {{ comment.user.name }}
+                                <span
+                                    v-if="
+                                        post.user.id ===
+                                        $page.props?.auth?.user?.id
+                                    "
+                                    >(Twój komentarz)</span
+                                >
+                            </p>
+                            <p>{{ comment.content }}</p>
+                            <p class="text-gray-600">
+                                Dodano:
+                                {{
+                                    new Date(
+                                        comment.created_at
+                                    ).toLocaleString()
+                                }}
+                            </p>
+                        </div>
+                        <div
+                            v-if="
+                                comment.user.id === $page.props?.auth?.user?.id
+                            "
+                            class="flex space-x-2 items-start"
+                        >
+                            <button
+                                @click="editComment(comment.id)"
+                                class="bg-blue-500 text-white py-1 px-3 rounded-lg hover:bg-blue-600"
+                            >
+                                Edytuj
+                            </button>
+                            <button
+                                @click="
+                                    router.delete(
+                                        route('comment.destroy', {
+                                            comment,
+                                        })
+                                    )
+                                "
+                                class="bg-red-500 text-white py-1 px-3 rounded-lg hover:bg-red-600"
+                            >
+                                Usuń
+                            </button>
+                        </div>
                     </div>
                 </template>
             </div>
+
             <!-- Add New Comment Section -->
             <div class="mt-8">
                 <h2 class="text-xl font-semibold">Dodaj komentarz:</h2>
