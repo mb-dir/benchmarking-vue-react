@@ -24,7 +24,10 @@ defineProps({
                     <Link
                         :href="route('posts.index', { category: category.id })"
                         class="bg-white text-center rounded-lg shadow-md py-2 px-4 flex items-center justify-center font-semibold"
-                        :class="{ 'bg-blue-200': +categoryId === category.id }"
+                        :class="{
+                            'border-2 border-blue-500':
+                                +categoryId === category.id,
+                        }"
                     >
                         {{ category.name }}
                     </Link>
@@ -32,7 +35,7 @@ defineProps({
                 <Link
                     :href="route('posts.index')"
                     class="bg-white text-center rounded-lg shadow-md py-2 px-4 flex items-center justify-center font-semibold"
-                    :class="{ 'bg-blue-200': !categoryId }"
+                    :class="{ 'border-2 border-blue-500': !categoryId }"
                 >
                     Wszystkie
                 </Link>
