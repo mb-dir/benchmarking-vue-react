@@ -104,7 +104,6 @@ const form = useForm({ content: "" });
                             class="flex space-x-2 items-start"
                         >
                             <button
-                                @click="editComment(comment.id)"
                                 class="bg-blue-500 text-white py-1 px-3 rounded-lg hover:bg-blue-600"
                             >
                                 Edytuj

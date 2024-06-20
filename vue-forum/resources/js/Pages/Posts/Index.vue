@@ -1,6 +1,7 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
 import PostLabels from "../../Components/PostLabels.vue";
+import CategoryTile from "../../Components/CategoryTile.vue";
 import { Link, router } from "@inertiajs/vue3";
 
 defineProps({
@@ -20,7 +21,13 @@ defineProps({
             <div
                 class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4"
             >
-                <template v-for="category in categories">
+                <CategoryTile
+                    v-for="category in categories"
+                    :categoryId
+                    :category
+                />
+                <CategoryTile :categoryId />
+                <!-- <template v-for="category in categories">
                     <Link
                         :href="route('posts.index', { category: category.id })"
                         class="bg-white text-center rounded-lg shadow-md py-2 px-4 flex items-center justify-center font-semibold"
@@ -38,7 +45,7 @@ defineProps({
                     :class="{ 'border-2 border-blue-500': !categoryId }"
                 >
                     Wszystkie
-                </Link>
+                </Link> -->
             </div>
         </div>
 
