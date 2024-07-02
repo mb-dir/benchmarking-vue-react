@@ -2,7 +2,8 @@
 import AppLayout from "@/Layouts/AppLayout.vue";
 import PostTile from "../../Components/PostTile.vue";
 import CategoryTile from "../../Components/CategoryTile.vue";
-import { Link, router } from "@inertiajs/vue3";
+import Pagination from "../../Components/Pagination.vue";
+import { Link } from "@inertiajs/vue3";
 
 defineProps({
     categories: { type: Array, required: true },
@@ -59,7 +60,8 @@ defineProps({
             <div class="grid grid-cols-1 gap-6" v-if="posts.data.length">
                 <!-- Iterate through posts -->
                 <PostTile v-for="post in posts.data" :post />
-
+                <Pagination :posts />
+                <!-- 
                 <div
                     v-if="posts.last_page > 1"
                     class="pagination flex justify-center items-center mt-8"
@@ -84,7 +86,7 @@ defineProps({
                             <span v-html="link.label" />
                         </button>
                     </template>
-                </div>
+                </div> -->
             </div>
             <div v-else class="flex justify-center items-center h-64">
                 <p class="text-gray-600 text-lg font-semibold">
