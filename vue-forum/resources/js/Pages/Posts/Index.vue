@@ -27,25 +27,6 @@ defineProps({
                     :category
                 />
                 <CategoryTile :categoryId />
-                <!-- <template v-for="category in categories">
-                    <Link
-                        :href="route('posts.index', { category: category.id })"
-                        class="bg-white text-center rounded-lg shadow-md py-2 px-4 flex items-center justify-center font-semibold"
-                        :class="{
-                            'border-2 border-blue-500':
-                                +categoryId === category.id,
-                        }"
-                    >
-                        {{ category.name }}
-                    </Link>
-                </template>
-                <Link
-                    :href="route('posts.index')"
-                    class="bg-white text-center rounded-lg shadow-md py-2 px-4 flex items-center justify-center font-semibold"
-                    :class="{ 'border-2 border-blue-500': !categoryId }"
-                >
-                    Wszystkie
-                </Link> -->
             </div>
         </div>
 

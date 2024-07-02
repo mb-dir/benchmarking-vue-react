@@ -16,7 +16,7 @@ const target = computed(() => {
 
 const isActive = computed(() => {
     if (props.categoryId == props.category?.id) return true;
-    if (!props.categoryId) return true;
+    if (!props.categoryId && !props.category) return true;
     return false;
 });
 </script>
