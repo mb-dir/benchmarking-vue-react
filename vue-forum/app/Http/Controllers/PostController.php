@@ -7,8 +7,8 @@ use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
 
 class PostController extends Controller
 {
@@ -16,7 +16,12 @@ class PostController extends Controller
     {
         $categoryId = $request->category;
         $tagId = $request->tag;
-        $categories = Category::all();
+        // Gets only first 5 categories with already assigned posts, otherwise take just 5 categories
+        $categories = Category::withPosts()->get()->take(5);
+
+        if($categories->isEmpty()){
+            $categories = Category::all()->take(5);
+        }
 
         // Build the query
         $query = Post::with(['user', 'tags', 'categories'])->orderBy('created_at', 'desc');

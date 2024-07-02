@@ -16,7 +16,9 @@ defineProps({
     <AppLayout>
         <!-- Category Section Header -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Kategorie</h2>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                Najpopularniejsze kategorie
+            </h2>
 
             <!-- Category Tiles -->
             <div
@@ -61,32 +63,6 @@ defineProps({
                 <!-- Iterate through posts -->
                 <PostTile v-for="post in posts.data" :post />
                 <Pagination :posts />
-                <!-- 
-                <div
-                    v-if="posts.last_page > 1"
-                    class="pagination flex justify-center items-center mt-8"
-                >
-                    <template v-for="link in posts.links" :key="link.label">
-                        <button
-                            v-if="link.url"
-                            class="px-3 py-1 bg-white text-black rounded focus:outline-none mx-1"
-                            :class="{
-                                'border-solid border-2 border-gray-200':
-                                    link.active,
-                            }"
-                            @click="router.visit(link.url)"
-                        >
-                            <span v-html="link.label" />
-                        </button>
-                        <button
-                            v-else
-                            class="px-3 py-1 bg-gray-300 text-gray-500 rounded cursor-not-allowed mx-1"
-                            disabled
-                        >
-                            <span v-html="link.label" />
-                        </button>
-                    </template>
-                </div> -->
             </div>
             <div v-else class="flex justify-center items-center h-64">
                 <p class="text-gray-600 text-lg font-semibold">
