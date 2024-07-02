@@ -1,6 +1,6 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
-import PostLabels from "../../Components/PostLabels.vue";
+import PostTile from "../../Components/PostTile.vue";
 import CategoryTile from "../../Components/CategoryTile.vue";
 import { Link, router } from "@inertiajs/vue3";
 
@@ -58,41 +58,7 @@ defineProps({
             <!-- Post Listings -->
             <div class="grid grid-cols-1 gap-6" v-if="posts.data.length">
                 <!-- Iterate through posts -->
-                <template v-for="post in posts.data" :key="post.id">
-                    <Link
-                        :href="route('posts.show', { post })"
-                        class="bg-white rounded-lg shadow-md p-4 w-full"
-                    >
-                        <h3 class="text-lg font-semibold mb-2">
-                            {{ post.title }}
-                        </h3>
-
-                        <p
-                            class="text-gray-600"
-                            :class="{
-                                'text-blue-600':
-                                    post.user.id ===
-                                    $page.props?.auth?.user?.id,
-                            }"
-                        >
-                            Autor: {{ post.user.name }}
-                            <span
-                                v-if="
-                                    post.user.id === $page.props?.auth?.user?.id
-                                "
-                                >(Twój post)</span
-                            >
-                        </p>
-                        <p class="text-gray-600">
-                            Kategorie:
-                            <PostLabels :labels="post.categories" />
-                        </p>
-                        <p class="text-gray-600">
-                            Tagi:
-                            <PostLabels :labels="post.tags" isForTags />
-                        </p>
-                    </Link>
-                </template>
+                <PostTile v-for="post in posts.data" :post />
 
                 <div
                     v-if="posts.last_page > 1"

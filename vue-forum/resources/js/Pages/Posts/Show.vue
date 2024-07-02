@@ -61,7 +61,7 @@ const form = useForm({ content: "" });
             <!-- Tags -->
             <div class="mt-4">
                 <h2 class="text-xl font-semibold">Tagi:</h2>
-                <PostLabels :labels="post.tags" isForTags />
+                <PostLabels :labels="post.tags" isTagLabel />
             </div>
 
             <!-- Comments Section -->
