@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -22,5 +23,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 
 require __DIR__.'/auth.php';

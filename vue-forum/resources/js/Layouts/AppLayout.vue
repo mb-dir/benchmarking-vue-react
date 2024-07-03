@@ -31,6 +31,12 @@ const showingNavigationDropdown = ref(false);
                             >
                                 Posty
                             </NavLink>
+                            <NavLink
+                                :href="route('categories.index')"
+                                :active="route().current('categories.index')"
+                            >
+                                Kategorie
+                            </NavLink>
                         </div>
                     </div>
 
