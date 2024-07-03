@@ -12,9 +12,9 @@ use Inertia\Inertia;
 
 class PostController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, Category $category)
     {
-        $categoryId = $request->category;
+        $categoryId = $category->id;
         $tagId = $request->tag;
         // Gets only first 5 categories with already assigned posts, otherwise take just 5 categories
         $categories = Category::withPosts()->get()->take(5);

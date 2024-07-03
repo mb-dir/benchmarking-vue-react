@@ -34,8 +34,8 @@ defineProps({
         </div>
 
         <!-- Post Section Header -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
-            <div class="p-6 flex justify-between items-center">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-8">
+            <div class="py-6 flex justify-between items-center">
                 <h2 class="text-2xl font-semibold text-gray-800 mb-4">
                     Najnowsze posty
                 </h2>

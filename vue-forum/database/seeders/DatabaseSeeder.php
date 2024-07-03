@@ -37,7 +37,22 @@ class DatabaseSeeder extends Seeder
         });
 
         // Create tags
-        $tags = collect(['Nauka', 'Potrzebna pomoc'])->map(function ($name) {
+        $tags = collect([
+            'Nauka', 
+            'Potrzebna pomoc',
+            'Edukacja', 
+            'Programowanie', 
+            'PHP', 
+            'Laravel', 
+            'JavaScript', 
+            'Tworzenie stron', 
+            'Backend', 
+            'Frontend', 
+            'Bazy danych', 
+            'API', 
+            'Kodowanie', 
+            'Technologia'
+        ])->map(function ($name) {
             return Tag::create(['name' => $name]);
         });
 

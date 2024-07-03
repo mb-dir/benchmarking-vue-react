@@ -10,7 +10,7 @@ const props = defineProps({
 
 const target = computed(() => {
     return props.category
-        ? route("posts.index", { category: props.category.id })
+        ? route("posts.index", { category: props.category })
         : route("posts.index");
 });
 
