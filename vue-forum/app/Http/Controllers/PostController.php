@@ -14,6 +14,7 @@ class PostController extends Controller
 {
     public function index(Request $request, Category $category)
     {
+        $currentCategory = $category;
         $categoryId = $category->id;
         $tagId = $request->tag;
         // Gets only first 5 categories with already assigned posts, otherwise take just 5 categories
@@ -43,7 +44,7 @@ class PostController extends Controller
         // Paginate the results
         $posts = $query->paginate(5);
 
-        return Inertia::render('Posts/Index', compact('categories', 'posts', 'categoryId'));
+        return Inertia::render('Posts/Index', compact('categories', 'posts', 'currentCategory'));
     }
 
     public function show(Post $post)

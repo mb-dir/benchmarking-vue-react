@@ -8,7 +8,7 @@ import { Link } from "@inertiajs/vue3";
 defineProps({
     categories: { type: Array, required: true },
     posts: { type: Object, required: true },
-    categoryId: { type: String },
+    currentCategory: { type: Object },
 });
 </script>
 
@@ -26,10 +26,10 @@ defineProps({
             >
                 <CategoryTile
                     v-for="category in categories"
-                    :categoryId
+                    :categoryId="currentCategory?.id"
                     :category
                 />
-                <CategoryTile :categoryId />
+                <CategoryTile :categoryId="currentCategory?.id" />
             </div>
         </div>
 
@@ -37,7 +37,10 @@ defineProps({
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-8">
             <div class="py-6 flex justify-between items-center">
                 <h2 class="text-2xl font-semibold text-gray-800 mb-4">
-                    Najnowsze posty
+                    <span v-if="currentCategory?.name"
+                        >Najnowsze posty z: {{ currentCategory.name }}</span
+                    >
+                    <span v-else>Najnowsze posty</span>
                 </h2>
                 <div>
                     <Link

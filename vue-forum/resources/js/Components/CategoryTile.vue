@@ -5,7 +5,7 @@ import { computed } from "vue";
 const props = defineProps({
     category: { type: Object, default: null, required: false },
     // Value returned from controller, represents id of chosen category
-    categoryId: { type: String },
+    categoryId: { type: Number },
 });
 
 const target = computed(() => {
@@ -15,7 +15,7 @@ const target = computed(() => {
 });
 
 const isActive = computed(() => {
-    if (props.categoryId == props.category?.id) return true;
+    if (props.categoryId === props.category?.id) return true;
     if (!props.categoryId && !props.category) return true;
     return false;
 });
