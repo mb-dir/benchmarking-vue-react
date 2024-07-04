@@ -1,6 +1,7 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
 import PostLabels from "../../Components/PostLabels.vue";
+import CommentTile from "../../Components/CommentTile.vue";
 import { useForm, Link, router } from "@inertiajs/vue3";
 
 defineProps({
@@ -30,8 +31,8 @@ const form = useForm({ content: "" });
                         Edytuj
                     </button>
                     <button
-                        @click="router.delete(route('posts.destroy', { post }))"
                         class="bg-red-500 text-white py-1 px-3 rounded-lg hover:bg-red-600"
+                        @click="router.delete(route('posts.destroy', { post }))"
                     >
                         Usuń
                     </button>
@@ -43,8 +44,8 @@ const form = useForm({ content: "" });
                 <p>
                     Autor: {{ post.user.name }}
                     <span v-if="post.user.id === $page.props?.auth?.user?.id"
-                        >(Twój post)</span
-                    >
+                        >(Twój post)
+                    </span>
                 </p>
                 <p>Dodano: {{ new Date(post.created_at).toLocaleString() }}</p>
             </div>
@@ -71,55 +72,7 @@ const form = useForm({ content: "" });
                     Brak komentarzy.
                 </div>
                 <template v-else>
-                    <div
-                        v-for="comment in post.comments"
-                        :key="comment.id"
-                        class="border-t border-gray-200 mt-4 p-4 flex justify-between"
-                    >
-                        <div>
-                            <p class="font-semibold">
-                                {{ comment.user.name }}
-                                <span
-                                    v-if="
-                                        comment.user.id ===
-                                        $page.props?.auth?.user?.id
-                                    "
-                                    >(Twój komentarz)</span
-                                >
-                            </p>
-                            <p>{{ comment.content }}</p>
-                            <p class="text-gray-600">
-                                Dodano:
-                                {{
-                                    new Date(
-                                        comment.created_at
-                                    ).toLocaleString()
-                                }}
-                            </p>
-                        </div>
-                        <div
-                            v-if="
-                                comment.user.id === $page.props?.auth?.user?.id
-                            "
-                            class="flex space-x-2 items-start"
-                        >
-                            <button
-                                class="bg-blue-500 text-white py-1 px-3 rounded-lg hover:bg-blue-600"
-                            >
-                                Edytuj
-                            </button>
-                            <button
-                                @click="
-                                    router.delete(
-                                        route('comment.destroy', { comment })
-                                    )
-                                "
-                                class="bg-red-500 text-white py-1 px-3 rounded-lg hover:bg-red-600"
-                            >
-                                Usuń
-                            </button>
-                        </div>
-                    </div>
+                    <CommentTile v-for="comment in post.comments" :comment />
                 </template>
             </div>
 
@@ -136,9 +89,9 @@ const form = useForm({ content: "" });
                     "
                 >
                     <textarea
+                        v-model="form.content"
                         class="w-full p-2 border rounded"
                         placeholder="Skomentuj..."
-                        v-model="form.content"
                     ></textarea>
                     <button
                         class="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
@@ -155,8 +108,9 @@ const form = useForm({ content: "" });
                             :href="route('login')"
                             class="text-blue-700 underline hover:text-blue-500"
                         >
-                            Zaloguj się</Link
-                        >, aby dodać komentarz.
+                            Zaloguj się
+                        </Link>
+                        , aby dodać komentarz.
                     </p>
                 </div>
             </div>
