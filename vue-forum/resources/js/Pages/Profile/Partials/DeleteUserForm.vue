@@ -3,7 +3,7 @@ import DangerButton from "@/Components/DangerButton.vue";
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import Modal from "@/Components/Modal.vue";
-import SecondaryButton from "@/Components/SecondaryButton.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import { useForm } from "@inertiajs/vue3";
 import { nextTick, ref } from "vue";
@@ -80,9 +80,7 @@ const closeModal = () => {
                 </div>
 
                 <div class="mt-6 flex justify-end">
-                    <SecondaryButton @click="closeModal">
-                        Anuluj
-                    </SecondaryButton>
+                    <PrimaryButton @click="closeModal"> Anuluj </PrimaryButton>
 
                     <DangerButton
                         class="ms-3"

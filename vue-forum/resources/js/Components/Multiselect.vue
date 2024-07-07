@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed } from "vue";
+import Checkbox from "./Checkbox.vue";
 
 const props = defineProps({
     options: { type: Array, required: true },
@@ -42,11 +43,10 @@ const selectedOptionsText = computed(() => {
                 :key="index"
                 class="flex items-center mt-2"
             >
-                <input
-                    type="checkbox"
+                <Checkbox
                     :id="`option-${index}`"
+                    v-model:checked="model"
                     :value="option"
-                    v-model="model"
                     class="mr-2"
                 />
                 <label :for="`option-${index}`">{{ option.name }}</label>

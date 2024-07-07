@@ -1,5 +1,7 @@
 <script setup>
 import { router } from "@inertiajs/vue3";
+import PrimaryButton from "./PrimaryButton.vue";
+import DangerButton from "./DangerButton.vue";
 
 defineProps({
     comment: { type: Object, required: true },
@@ -25,17 +27,12 @@ defineProps({
             v-if="comment.user.id === $page.props?.auth?.user?.id"
             class="flex space-x-2 items-start"
         >
-            <button
-                class="bg-blue-500 text-white py-1 px-3 rounded-lg hover:bg-blue-600"
-            >
-                Edytuj
-            </button>
-            <button
-                class="bg-red-500 text-white py-1 px-3 rounded-lg hover:bg-red-600"
+            <PrimaryButton> Edytuj </PrimaryButton>
+            <DangerButton
                 @click="router.delete(route('comment.destroy', { comment }))"
             >
                 Usuń
-            </button>
+            </DangerButton>
         </div>
     </div>
 </template>

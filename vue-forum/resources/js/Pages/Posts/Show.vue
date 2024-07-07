@@ -3,6 +3,8 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import PostLabels from "../../Components/PostLabels.vue";
 import CommentTile from "../../Components/CommentTile.vue";
 import { useForm, Link, router } from "@inertiajs/vue3";
+import DangerButton from "../../Components/DangerButton.vue";
+import PrimaryButton from "../../Components/PrimaryButton.vue";
 
 defineProps({
     post: { type: Object, required: true },
@@ -25,17 +27,17 @@ const form = useForm({ content: "" });
                     v-if="post.user.id === $page.props?.auth?.user?.id"
                     class="flex space-x-2"
                 >
-                    <button
+                    <PrimaryButton
                         class="bg-blue-500 text-white py-1 px-3 rounded-lg hover:bg-blue-600"
                     >
                         Edytuj
-                    </button>
-                    <button
+                    </PrimaryButton>
+                    <DangerButton
                         class="bg-red-500 text-white py-1 px-3 rounded-lg hover:bg-red-600"
                         @click="router.delete(route('posts.destroy', { post }))"
                     >
                         Usuń
-                    </button>
+                    </DangerButton>
                 </div>
             </div>
 
