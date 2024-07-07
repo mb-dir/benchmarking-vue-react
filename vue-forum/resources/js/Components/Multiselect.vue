@@ -4,6 +4,7 @@ import Checkbox from "./Checkbox.vue";
 
 const props = defineProps({
     options: { type: Array, required: true },
+    required: { type: Boolean, default: false },
 });
 
 const model = defineModel({ type: Array, required: true });
@@ -21,7 +22,12 @@ const selectedOptionsText = computed(() => {
 </script>
 
 <template>
-    <div class="relative" @click="isOpen = true">
+    <div
+        class="relative"
+        @click="isOpen = true"
+        @keydown.enter="isOpen = true"
+        tabindex="0"
+    >
         <div class="cursor-pointer border p-2 bg-white rounded-md">
             {{ selectedOptionsText }}
         </div>

@@ -19,6 +19,8 @@ const form = useForm({
 });
 
 const submit = () => {
+    if (form.tags.length === 0) alert("toast");
+    if (form.categories.length === 0) alert("toast");
     form.post(route("posts.store"));
 };
 </script>
@@ -37,7 +39,7 @@ const submit = () => {
                 </h1>
 
                 <div>
-                    <InputLabel for="title" value="Tytuł" />
+                    <InputLabel for="title" value="Tytuł" required />
 
                     <TextInput
                         id="title"
@@ -50,7 +52,7 @@ const submit = () => {
                 </div>
 
                 <div class="mt-4">
-                    <InputLabel for="content" value="Treść" />
+                    <InputLabel for="content" value="Treść" required />
 
                     <textarea
                         id="content"
@@ -62,7 +64,11 @@ const submit = () => {
                 </div>
 
                 <div class="mt-4">
-                    <InputLabel for="category" value="Wybierz kategorie" />
+                    <InputLabel
+                        for="category"
+                        value="Wybierz kategorie"
+                        required
+                    />
 
                     <Multiselect
                         :options="categories"
@@ -71,7 +77,7 @@ const submit = () => {
                 </div>
 
                 <div class="mt-4">
-                    <InputLabel for="tags" value="Wybierz tagi" />
+                    <InputLabel for="tags" value="Wybierz tagi" required />
 
                     <Multiselect :options="tags" v-model="form.tags" />
                 </div>
