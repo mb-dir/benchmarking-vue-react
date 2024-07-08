@@ -81,10 +81,11 @@ class PostController extends Controller
         
 
         // m2m ralation
+        // array_column($validatedData['tags'], 'id') - gets all id field from tags and returns it as an array
         $post->tags()->sync(array_column($validatedData['tags'], 'id'));
         $post->categories()->sync(array_column($validatedData['categories'], 'id'));
 
-        return redirect()->route('posts.show', ['post' => $post->id]);
+        return redirect()->route('posts.show', compact('post'));
     }
 
     public function destroy(Post $post){

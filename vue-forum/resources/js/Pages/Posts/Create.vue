@@ -5,6 +5,7 @@ import { useForm, Head } from "@inertiajs/vue3";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import { toast } from "vue3-toastify";
 
 defineProps({
     categories: Array,
@@ -19,14 +20,21 @@ const form = useForm({
 });
 
 const submit = () => {
-    if (form.tags.length === 0) alert("toast");
-    if (form.categories.length === 0) alert("toast");
+    // if (form.tags.length === 0) {
+    //     toast("Musisz wybrać przynajmniej jedną kategorie");
+    //     return;
+    // }
+    // if (form.categories.length === 0) {
+    //     toast("Musisz wybrać przynajmniej jedn tag");
+    //     return;
+    // }
     form.post(route("posts.store"));
 };
 </script>
 
 <template>
     <AppLayout>
+        {{ form }}
         <Head title="Dodaj nowy post" />
 
         <form
