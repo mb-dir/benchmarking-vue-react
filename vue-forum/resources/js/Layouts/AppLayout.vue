@@ -1,10 +1,26 @@
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
+import { usePage } from "@inertiajs/vue3";
 import Dropdown from "@/Components/Dropdown.vue";
 import DropdownLink from "@/Components/DropdownLink.vue";
 import NavLink from "@/Components/NavLink.vue";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
 import { Link } from "@inertiajs/vue3";
+import { toast } from "vue3-toastify";
+
+const page = usePage();
+
+watch(
+    () => page.props.errors,
+    (value) => {
+        if (Object.keys(value).length > 0) {
+            for (const error of Object.values(value)) {
+                toast.error(error);
+            }
+        }
+    },
+    { immediate: true }
+);
 
 const showingNavigationDropdown = ref(false);
 </script>

@@ -34,7 +34,6 @@ const submit = () => {
 
 <template>
     <AppLayout>
-        {{ form }}
         <Head title="Dodaj nowy post" />
 
         <form
