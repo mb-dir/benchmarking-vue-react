@@ -9,7 +9,7 @@ const props = defineProps({
 
 const model = defineModel({ type: Array, required: true });
 const isOpen = ref(false);
-const multiselectHtml = ref();
+const headingHtml = ref();
 
 const selectedOptionsText = computed(() => {
     if (model.value.length === 0) {
@@ -31,12 +31,13 @@ function closeSelect() {
 </script>
 
 <template>
+    <h1 ref="headingHtml">Twój stry</h1>
     <div
         class="relative"
         @click="openSelect"
         @keydown.enter="openSelect"
         tabindex="0"
-        v-click-outside:handler="closeSelect"
+        v-click-outside="{ handler: closeSelect, exclude: ['headingHtml'] }"
     >
         <div class="cursor-pointer border p-2 bg-white rounded-md">
             {{ selectedOptionsText }}
