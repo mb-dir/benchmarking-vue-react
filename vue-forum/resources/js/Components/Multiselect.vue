@@ -9,7 +9,6 @@ const props = defineProps({
 
 const model = defineModel({ type: Array, required: true });
 const isOpen = ref(false);
-const headingHtml = ref();
 
 const selectedOptionsText = computed(() => {
     if (model.value.length === 0) {
@@ -31,7 +30,6 @@ function closeSelect() {
 </script>
 
 <template>
-    <h1 ref="headingHtml">Twój stry</h1>
     <div
         class="relative"
         @click="openSelect"
@@ -44,7 +42,7 @@ function closeSelect() {
         </div>
         <div
             v-if="isOpen"
-            class="absolute z-10 bg-white border rounded-md mt-2 p-2 w-full max-h-60 overflow-y-auto"
+            class="absolute z-10 bg-white border rounded-md mt-2 p-2 w-full max-h-20 overflow-y-auto"
         >
             <div class="flex justify-between items-center mb-2">
                 <span class="text-lg font-bold">Wybierz opcje</span>
