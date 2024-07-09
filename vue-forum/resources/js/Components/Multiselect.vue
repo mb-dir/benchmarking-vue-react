@@ -9,6 +9,7 @@ const props = defineProps({
 
 const model = defineModel({ type: Array, required: true });
 const isOpen = ref(false);
+const multiselectHtml = ref();
 
 const selectedOptionsText = computed(() => {
     if (model.value.length === 0) {
@@ -19,14 +20,23 @@ const selectedOptionsText = computed(() => {
         return `Wybrano ${model.value.length} opcji`;
     }
 });
+
+function openSelect() {
+    isOpen.value = true;
+}
+
+function closeSelect() {
+    isOpen.value = false;
+}
 </script>
 
 <template>
     <div
         class="relative"
-        @click="isOpen = true"
-        @keydown.enter="isOpen = true"
+        @click="openSelect"
+        @keydown.enter="openSelect"
         tabindex="0"
+        v-click-outside:handler="closeSelect"
     >
         <div class="cursor-pointer border p-2 bg-white rounded-md">
             {{ selectedOptionsText }}
@@ -38,7 +48,7 @@ const selectedOptionsText = computed(() => {
             <div class="flex justify-between items-center mb-2">
                 <span class="text-lg font-bold">Wybierz opcje</span>
                 <button
-                    @click.stop="isOpen = false"
+                    @click.stop="closeSelect"
                     class="text-red-500 font-bold"
                 >
                     X
