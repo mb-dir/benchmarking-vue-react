@@ -20,14 +20,6 @@ const form = useForm({
 });
 
 const submit = () => {
-    // if (form.tags.length === 0) {
-    //     toast("Musisz wybrać przynajmniej jedną kategorie");
-    //     return;
-    // }
-    // if (form.categories.length === 0) {
-    //     toast("Musisz wybrać przynajmniej jedn tag");
-    //     return;
-    // }
     form.post(route("posts.store"));
 };
 </script>
