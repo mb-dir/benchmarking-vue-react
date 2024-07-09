@@ -1,6 +1,5 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
-import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
@@ -43,8 +42,6 @@ const submit = () => {
                         autofocus
                         autocomplete="name"
                     />
-
-                    <InputError class="mt-2" :message="form.errors.name" />
                 </div>
 
                 <div class="mt-4">
@@ -58,8 +55,6 @@ const submit = () => {
                         required
                         autocomplete="username"
                     />
-
-                    <InputError class="mt-2" :message="form.errors.email" />
                 </div>
 
                 <div class="mt-4">
@@ -73,8 +68,6 @@ const submit = () => {
                         required
                         autocomplete="new-password"
                     />
-
-                    <InputError class="mt-2" :message="form.errors.password" />
                 </div>
 
                 <div class="mt-4">
@@ -90,11 +83,6 @@ const submit = () => {
                         v-model="form.password_confirmation"
                         required
                         autocomplete="new-password"
-                    />
-
-                    <InputError
-                        class="mt-2"
-                        :message="form.errors.password_confirmation"
                     />
                 </div>
 

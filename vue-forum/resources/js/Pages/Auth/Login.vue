@@ -1,7 +1,6 @@
 <script setup>
 import Checkbox from "@/Components/Checkbox.vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
-import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
@@ -45,8 +44,6 @@ const submit = () => {
                         autofocus
                         autocomplete="username"
                     />
-
-                    <InputError class="mt-2" :message="form.errors.email" />
                 </div>
 
                 <div class="mt-4">
@@ -60,8 +57,6 @@ const submit = () => {
                         required
                         autocomplete="current-password"
                     />
-
-                    <InputError class="mt-2" :message="form.errors.password" />
                 </div>
 
                 <div class="block mt-4">
