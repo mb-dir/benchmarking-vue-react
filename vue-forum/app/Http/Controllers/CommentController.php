@@ -19,13 +19,13 @@ class CommentController extends Controller
 
         Comment::create($validatedData);
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Komentarz został dodany');
     }
 
     public function destroy(Comment $comment)
     {
         $comment->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Komentarz został usunięty');
     }
 }

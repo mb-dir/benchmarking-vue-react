@@ -85,12 +85,12 @@ class PostController extends Controller
         $post->tags()->sync(array_column($validatedData['tags'], 'id'));
         $post->categories()->sync(array_column($validatedData['categories'], 'id'));
 
-        return redirect()->route('posts.show', compact('post'));
+        return redirect()->route('posts.show', compact('post'))->with('message', 'Post został dodany');;
     }
 
     public function destroy(Post $post){
         $post->delete();
 
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with('message', 'Post został usunięty');;
     }
 }

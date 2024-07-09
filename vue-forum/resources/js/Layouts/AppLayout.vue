@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, computed } from "vue";
 import { usePage } from "@inertiajs/vue3";
 import Dropdown from "@/Components/Dropdown.vue";
 import DropdownLink from "@/Components/DropdownLink.vue";
@@ -9,13 +9,22 @@ import { Link } from "@inertiajs/vue3";
 import { toast } from "vue3-toastify";
 
 const page = usePage();
+const flashMessages = computed(() => ({
+    errors: page.props.errors,
+    messages: page.props.messages,
+}));
 
 watch(
-    () => page.props.errors,
+    flashMessages,
     (value) => {
-        if (Object.keys(value).length > 0) {
-            for (const error of Object.values(value)) {
+        if (Object.keys(value.errors).length > 0) {
+            for (const error of Object.values(value.errors)) {
                 toast.error(error);
+            }
+        }
+        if (Object.keys(value.messages).length > 0) {
+            for (const message of Object.values(value.messages)) {
+                toast.success(message);
             }
         }
     },
