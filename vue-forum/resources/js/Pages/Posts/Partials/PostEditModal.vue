@@ -13,18 +13,32 @@ const props = defineProps({
     categories: { type: Array, required: true },
 });
 
+const cleanCategories = (categories) => {
+    return categories.map(({ pivot, ...rest }) => rest);
+};
+
+const cleanTags = (tags) => {
+    return tags.map(({ pivot, ...rest }) => rest);
+};
+
+// categories and tags assigned to post has extra pivot properties which makes them different from tags and categories, that caused problem with data binding
+const cleanedCategories = cleanCategories(props.post.categories);
+const cleanedTags = cleanTags(props.post.tags);
+
 const form = useForm({
     title: props.post.title,
     content: props.post.content,
-    tags: props.post.tags,
-    categories: props.post.categories,
+    tags: cleanedTags,
+    categories: cleanedCategories,
 });
 
 const show = defineModel("show");
+
+const submit = () => {};
 </script>
 
 <template>
-    <Modal :show @close="show = false">
+    <Modal :show="show" @close="show = false">
         <form
             @submit.prevent="submit"
             class="flex justify-center px-4 sm:px-6 lg:px-8 mt-24"
