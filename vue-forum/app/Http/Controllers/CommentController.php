@@ -28,4 +28,13 @@ class CommentController extends Controller
 
         return redirect()->back()->with('message', 'Komentarz został usunięty');
     }
+
+    public function update(Request $request, Comment $comment){
+        $validatedData = $request->validate([
+            'content' => 'required|string|max:255',
+        ]);
+
+        $comment->update($validatedData);
+        return redirect()->back()->with('message', 'Komentarz został zaktualizowany');
+    }
 }

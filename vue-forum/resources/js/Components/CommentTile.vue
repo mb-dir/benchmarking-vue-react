@@ -1,11 +1,15 @@
 <script setup>
+import { ref } from "vue";
 import { router } from "@inertiajs/vue3";
 import PrimaryButton from "./PrimaryButton.vue";
 import DangerButton from "./DangerButton.vue";
+import CommentEditModal from "../Pages/Posts/Partials/CommentEditModal.vue";
 
 defineProps({
     comment: { type: Object, required: true },
 });
+
+const commentEditModalOpen = ref(false);
 </script>
 
 <template>
@@ -27,7 +31,9 @@ defineProps({
             v-if="comment.user.id === $page.props?.auth?.user?.id"
             class="flex space-x-2 items-start"
         >
-            <PrimaryButton> Edytuj </PrimaryButton>
+            <PrimaryButton @click="commentEditModalOpen = true">
+                Edytuj
+            </PrimaryButton>
             <DangerButton
                 @click="router.delete(route('comment.destroy', { comment }))"
             >
@@ -35,4 +41,6 @@ defineProps({
             </DangerButton>
         </div>
     </div>
+
+    <CommentEditModal :comment v-model:show="commentEditModalOpen" />
 </template>

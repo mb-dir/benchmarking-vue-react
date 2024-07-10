@@ -101,11 +101,7 @@ const openEditModal = ref(false);
                         class="w-full p-2 border rounded"
                         placeholder="Skomentuj..."
                     ></textarea>
-                    <button
-                        class="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
-                    >
-                        Dodaj komentarz
-                    </button>
+                    <PrimaryButton> Dodaj komentarz </PrimaryButton>
                 </form>
                 <div
                     v-else
