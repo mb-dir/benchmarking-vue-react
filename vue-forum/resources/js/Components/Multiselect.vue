@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch } from "vue";
+import { ref, computed } from "vue";
 import Checkbox from "./Checkbox.vue";
 
 const props = defineProps({
@@ -19,14 +19,6 @@ const selectedOptionsText = computed(() => {
         return `Wybrano ${model.value.length} opcji`;
     }
 });
-
-watch(
-    model,
-    (value) => {
-        console.log(value, props.options);
-    },
-    { immediate: true }
-);
 
 function openSelect() {
     isOpen.value = true;

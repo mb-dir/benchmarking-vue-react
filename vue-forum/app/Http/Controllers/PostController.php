@@ -95,4 +95,24 @@ class PostController extends Controller
 
         return redirect()->route('posts.index')->with('message', 'Post został usunięty');;
     }
+
+    public function update(Post $post, Request $request){
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'tags' => 'required|array',
+            'categories' => 'required|array',
+            'tags.*.id' => 'required|integer|exists:tags,id',
+            'categories.*.id' => 'required|integer|exists:categories,id',
+        ]);
+
+        $post->update($validatedData);
+
+        // update m2m
+        $post->tags()->sync(array_column($validatedData['tags'], 'id'));
+        $post->categories()->sync(array_column($validatedData['categories'], 'id'));
+
+        return redirect()->back()->with('message', 'Post został zaktualizowany');
+
+    }
 }

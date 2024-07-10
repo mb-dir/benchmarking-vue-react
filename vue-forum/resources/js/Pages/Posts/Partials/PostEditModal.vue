@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from "vue";
 import { useForm } from "@inertiajs/vue3";
 import Modal from "@/Components/Modal.vue";
 import InputLabel from "@/Components/InputLabel.vue";
@@ -34,7 +33,11 @@ const form = useForm({
 
 const show = defineModel("show");
 
-const submit = () => {};
+const submit = () => {
+    form.put(route("posts.update", { post: props.post }), {
+        onSuccess: () => (show.value = false),
+    });
+};
 </script>
 
 <template>
