@@ -1,16 +1,21 @@
 <script setup>
+import { ref } from "vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import PostLabels from "../../Components/PostLabels.vue";
 import CommentTile from "../../Components/CommentTile.vue";
 import { useForm, Link, router } from "@inertiajs/vue3";
 import DangerButton from "../../Components/DangerButton.vue";
 import PrimaryButton from "../../Components/PrimaryButton.vue";
+import PostEditModal from "./Partials/PostEditModal.vue";
 
 defineProps({
     post: { type: Object, required: true },
+    tags: { type: Array, required: true },
+    categories: { type: Array, required: true },
 });
 
 const form = useForm({ content: "" });
+const openEditModal = ref(false);
 </script>
 
 <template>
@@ -28,6 +33,7 @@ const form = useForm({ content: "" });
                     class="flex space-x-2"
                 >
                     <PrimaryButton
+                        @click="openEditModal = !openEditModal"
                         class="bg-blue-500 text-white py-1 px-3 rounded-lg hover:bg-blue-600"
                     >
                         Edytuj
@@ -118,4 +124,7 @@ const form = useForm({ content: "" });
             </div>
         </div>
     </AppLayout>
+
+    <!-- modals -->
+    <PostEditModal v-model:show="openEditModal" :post :categories :tags />
 </template>

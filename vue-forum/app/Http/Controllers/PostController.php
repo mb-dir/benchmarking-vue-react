@@ -50,8 +50,10 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $post->load('user', 'comments.user', 'categories', 'tags');
+        $categories = Category::all();
+        $tags = Tag::all();
         
-        return Inertia::render('Posts/Show', compact('post'));
+        return Inertia::render('Posts/Show', compact('post', 'categories', 'tags'));
     }
 
     public function create()

@@ -35,7 +35,7 @@ function closeSelect() {
         @click="openSelect"
         @keydown.enter="openSelect"
         tabindex="0"
-        v-click-outside="{ handler: closeSelect, exclude: ['headingHtml'] }"
+        v-click-outside="{ handler: closeSelect }"
     >
         <div class="cursor-pointer border p-2 bg-white rounded-md">
             {{ selectedOptionsText }}

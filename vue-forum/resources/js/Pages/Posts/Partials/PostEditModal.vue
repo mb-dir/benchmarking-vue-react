@@ -1,39 +1,37 @@
 <script setup>
-import AppLayout from "@/Layouts/AppLayout.vue";
-import Multiselect from "../../Components/Multiselect.vue";
-import { useForm, Head } from "@inertiajs/vue3";
+import { ref } from "vue";
+import { useForm } from "@inertiajs/vue3";
+import Modal from "@/Components/Modal.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
+import Multiselect from "@/Components/Multiselect.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 
-defineProps({
-    categories: Array,
-    tags: Array,
+const props = defineProps({
+    post: { type: Object, required: true },
+    tags: { type: Array, required: true },
+    categories: { type: Array, required: true },
 });
 
 const form = useForm({
-    title: "",
-    content: "",
-    tags: [],
-    categories: [],
+    title: props.post.title,
+    content: props.post.content,
+    tags: props.post.tags,
+    categories: props.post.categories,
 });
 
-const submit = () => {
-    form.post(route("posts.store"));
-};
+const show = defineModel("show");
 </script>
 
 <template>
-    <AppLayout>
-        <Head title="Dodaj nowy post" />
-
+    <Modal :show @close="show = false">
         <form
             @submit.prevent="submit"
             class="flex justify-center px-4 sm:px-6 lg:px-8 mt-24"
         >
             <div class="w-full max-w-md">
                 <h1 class="text-3xl font-bold text-center mb-8">
-                    Dodaj nowy post
+                    Edycja postu
                 </h1>
 
                 <div>
@@ -86,10 +84,10 @@ const submit = () => {
                         :class="{ 'opacity-25': form.processing }"
                         :disabled="form.processing"
                     >
-                        Dodaj
+                        Zapisz
                     </PrimaryButton>
                 </div>
             </div>
         </form>
-    </AppLayout>
+    </Modal>
 </template>
