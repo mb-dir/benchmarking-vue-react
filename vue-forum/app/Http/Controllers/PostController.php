@@ -19,8 +19,9 @@ class PostController extends Controller
         $tagId = $request->tag;
         // Gets only first 5 categories with already assigned posts, otherwise take just 5 categories
         $categories = Category::withPosts()->get()->take(5);
+        $tags = Tag::all();
 
-        if($categories->isEmpty()){
+        if ($categories->isEmpty()) {
             $categories = Category::all()->take(5);
         }
 
@@ -29,14 +30,14 @@ class PostController extends Controller
 
         // If category ID exists, filter the posts by category
         if ($categoryId) {
-            $query->whereHas('categories', function($q) use ($categoryId) {
+            $query->whereHas('categories', function ($q) use ($categoryId) {
                 $q->where('categories.id', $categoryId);
             });
         }
 
         // If tag ID exists, filter the posts by tag
         if ($tagId) {
-            $query->whereHas('tags', function($q) use ($tagId) {
+            $query->whereHas('tags', function ($q) use ($tagId) {
                 $q->where('tags.id', $tagId);
             });
         }
@@ -44,7 +45,7 @@ class PostController extends Controller
         // Paginate the results
         $posts = $query->paginate(5);
 
-        return Inertia::render('Posts/Index', compact('categories', 'posts', 'currentCategory'));
+        return Inertia::render('Posts/Index', compact('categories', 'posts', 'tags', 'currentCategory'));
     }
 
     public function show(Post $post)
@@ -52,7 +53,7 @@ class PostController extends Controller
         $post->load('user', 'comments.user', 'categories', 'tags');
         $categories = Category::all();
         $tags = Tag::all();
-        
+
         return Inertia::render('Posts/Show', compact('post', 'categories', 'tags'));
     }
 
@@ -80,7 +81,7 @@ class PostController extends Controller
             'content' => $validatedData['content'],
             'user_id' => Auth::id(),
         ]);
-        
+
 
         // m2m ralation
         // array_column($validatedData['tags'], 'id') - gets all id field from tags and returns it as an array
@@ -90,13 +91,15 @@ class PostController extends Controller
         return redirect()->route('posts.show', compact('post'))->with('message', 'Post został dodany');;
     }
 
-    public function destroy(Post $post){
+    public function destroy(Post $post)
+    {
         $post->delete();
 
         return redirect()->route('posts.index')->with('message', 'Post został usunięty');;
     }
 
-    public function update(Post $post, Request $request){
+    public function update(Post $post, Request $request)
+    {
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
@@ -113,6 +116,5 @@ class PostController extends Controller
         $post->categories()->sync(array_column($validatedData['categories'], 'id'));
 
         return redirect()->back()->with('message', 'Post został zaktualizowany');
-
     }
 }

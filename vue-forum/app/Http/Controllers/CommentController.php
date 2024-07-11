@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-     public function store(Request $request, Post $post)
+    public function store(Request $request, Post $post)
     {
         $validatedData = $request->validate([
             'content' => 'required|string|max:255',
@@ -29,7 +29,8 @@ class CommentController extends Controller
         return redirect()->back()->with('message', 'Komentarz został usunięty');
     }
 
-    public function update(Request $request, Comment $comment){
+    public function update(Request $request, Comment $comment)
+    {
         $validatedData = $request->validate([
             'content' => 'required|string|max:255',
         ]);
