@@ -17,6 +17,7 @@ class PostController extends Controller
         $currentCategory = $category;
         $categoryId = $category->id;
         $tagId = $request->tag;
+
         // Gets only first 5 categories with already assigned posts, otherwise take just 5 categories
         $categories = Category::withPosts()->get()->take(5);
         $tags = Tag::all();
@@ -36,14 +37,17 @@ class PostController extends Controller
         }
 
         // If tag ID exists, filter the posts by tag
-        if ($tagId) {
+        if (is_array($tagId)) {
+            $query->whereHas('tags', function ($q) use ($tagId) {
+                $q->whereIn('tags.id', $tagId);
+            });
+        } elseif ($tagId) {
             $query->whereHas('tags', function ($q) use ($tagId) {
                 $q->where('tags.id', $tagId);
             });
         }
-
         // Paginate the results
-        $posts = $query->paginate(5);
+        $posts = $query->paginate(5)->withQueryString();
 
         return Inertia::render('Posts/Index', compact('categories', 'posts', 'tags', 'currentCategory'));
     }

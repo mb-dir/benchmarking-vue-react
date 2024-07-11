@@ -3,20 +3,26 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import PostTile from "../../Components/PostTile.vue";
 import CategoryTile from "../../Components/CategoryTile.vue";
 import Pagination from "../../Components/Pagination.vue";
-import { Link, useForm } from "@inertiajs/vue3";
+import { Link, router } from "@inertiajs/vue3";
+import { ref } from "vue";
 import Multiselect from "@/Components/Multiselect.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 
-defineProps({
+const props = defineProps({
     categories: { type: Array, required: true },
     tags: { type: Array, required: true },
     posts: { type: Object, required: true },
-    currentCategory: { type: Object },
+    currentCategory: { type: Object, required: true },
 });
 
-const tagsFilter = useForm({
+const tagsFilter = ref({
     tags: [],
 });
+
+const tagsFilterSubmit = () => {
+    const tag = tagsFilter.value.tags.map((tag) => tag.id);
+    router.visit(route("posts.index", { tag }), { preserveState: true });
+};
 </script>
 
 <template>
@@ -74,7 +80,7 @@ const tagsFilter = useForm({
                     placeholder="Wyszukaj post (tytuł, zawartość)"
                     class="w-full p-2 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <form @submit.prevent="tagsFilter.submit" class="space-y-4">
+                <form @submit.prevent="tagsFilterSubmit" class="space-y-4">
                     <label class="block text-gray-700">
                         Filtruj po tagach
                     </label>
