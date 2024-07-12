@@ -5,6 +5,7 @@ import Checkbox from "./Checkbox.vue";
 const props = defineProps({
     options: { type: Array, required: true },
     required: { type: Boolean, default: false },
+    xl: { type: Boolean, default: false },
 });
 
 const model = defineModel({ type: Array, required: true });
@@ -43,6 +44,7 @@ function closeSelect() {
         <div
             v-if="isOpen"
             class="absolute z-10 bg-white border rounded-md mt-2 p-2 w-full max-h-20 overflow-y-auto"
+            :class="{ 'max-h-40': xl }"
         >
             <div class="flex justify-between items-center mb-2">
                 <span class="text-lg font-bold">Wybierz opcje</span>

@@ -3,8 +3,7 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import PostTile from "../../Components/PostTile.vue";
 import CategoryTile from "../../Components/CategoryTile.vue";
 import Pagination from "../../Components/Pagination.vue";
-import { Link, router } from "@inertiajs/vue3";
-import { ref } from "vue";
+import { Link, useForm } from "@inertiajs/vue3";
 import Multiselect from "@/Components/Multiselect.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 
@@ -13,15 +12,19 @@ const props = defineProps({
     tags: { type: Array, required: true },
     posts: { type: Object, required: true },
     currentCategory: { type: Object, required: true },
+    currentTags: { type: Array, required: true, default: [] },
 });
 
-const tagsFilter = ref({
-    tags: [],
+const tagsFilter = useForm({
+    tags: props.currentTags,
 });
+
+console.log(tagsFilter.tags);
 
 const tagsFilterSubmit = () => {
-    const tag = tagsFilter.value.tags.map((tag) => tag.id);
-    router.visit(route("posts.index", { tag }), { preserveState: true });
+    // kurwa chuj z tym bo id same tu leca :/
+    const tag = tagsFilter.tags.map((tag) => tag.id);
+    tagsFilter.get(route("posts.index", { tag }), { preserveState: true });
 };
 </script>
 
@@ -88,8 +91,10 @@ const tagsFilterSubmit = () => {
                         :options="tags"
                         v-model="tagsFilter.tags"
                         class="w-full p-2"
+                        xl
                     />
-                    <PrimaryButton>Filtruj</PrimaryButton>
+                    <PrimaryButton class="mr-2">Filtruj</PrimaryButton>
+                    <PrimaryButton>Resetuj</PrimaryButton>
                 </form>
             </div>
 

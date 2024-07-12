@@ -17,6 +17,9 @@ class PostController extends Controller
         $currentCategory = $category;
         $categoryId = $category->id;
         $tagId = $request->tag;
+        $currentTags = $request->tags ?? [];
+
+        // dd($currentTags);
 
         // Gets only first 5 categories with already assigned posts, otherwise take just 5 categories
         $categories = Category::withPosts()->get()->take(5);
@@ -49,7 +52,7 @@ class PostController extends Controller
         // Paginate the results
         $posts = $query->paginate(5)->withQueryString();
 
-        return Inertia::render('Posts/Index', compact('categories', 'posts', 'tags', 'currentCategory'));
+        return Inertia::render('Posts/Index', compact('categories', 'posts', 'tags', 'currentCategory', 'currentTags'));
     }
 
     public function show(Post $post)
