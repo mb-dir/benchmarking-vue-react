@@ -12,57 +12,54 @@ use Inertia\Inertia;
 
 class PostController extends Controller
 {
-    public function index(Request $request, Category $category)
+    public function index(Request $request, Category $category = null)
     {
-        $currentCategory = $category;
-        $categoryId = $category->id;
-        $tagId = $request->tag;
-        $currentTags = $request->tags ?? [];
+        $categoryId = $category ? $category->id : null;
+        $tagIds = $request->tag ?? null;
 
-        // dd($currentTags);
-
-        // Gets only first 5 categories with already assigned posts, otherwise take just 5 categories
-        $categories = Category::withPosts()->get()->take(5);
-        $tags = Tag::all();
-
+        $categories = Category::withPosts()->take(5)->get();
         if ($categories->isEmpty()) {
-            $categories = Category::all()->take(5);
+            $categories = Category::take(5)->get();
         }
 
-        // Build the query
+        $tags = Tag::all();
+        $currentTags = null;
+
+        if (is_array($tagIds)) {
+            $currentTags = Tag::whereIn('id', $tagIds)->get();
+        } else {
+            $currentTags = Tag::where('id', $tagIds)->get();
+        }
+
         $query = Post::with(['user', 'tags', 'categories'])->orderBy('created_at', 'desc');
 
-        // If category ID exists, filter the posts by category
         if ($categoryId) {
             $query->whereHas('categories', function ($q) use ($categoryId) {
                 $q->where('categories.id', $categoryId);
             });
         }
 
-        // If tag ID exists, filter the posts by tag
-        if (is_array($tagId)) {
-            $query->whereHas('tags', function ($q) use ($tagId) {
-                $q->whereIn('tags.id', $tagId);
+        if (is_array($tagIds)) {
+            $query->whereHas('tags', function ($q) use ($tagIds) {
+                $q->whereIn('tags.id', $tagIds);
             });
-        } elseif ($tagId) {
-            $query->whereHas('tags', function ($q) use ($tagId) {
-                $q->where('tags.id', $tagId);
+        } elseif ($tagIds) {
+            $query->whereHas('tags', function ($q) use ($tagIds) {
+                $q->where('tags.id', $tagIds);
             });
         }
-        // Paginate the results
+
         $posts = $query->paginate(5)->withQueryString();
 
-        return Inertia::render('Posts/Index', compact('categories', 'posts', 'tags', 'currentCategory', 'currentTags'));
+        return Inertia::render('Posts/Index', [
+            'categories' => $categories,
+            'posts' => $posts,
+            'tags' => $tags,
+            'currentCategory' => $category,
+            'currentTags' => $currentTags,
+        ]);
     }
 
-    public function show(Post $post)
-    {
-        $post->load('user', 'comments.user', 'categories', 'tags');
-        $categories = Category::all();
-        $tags = Tag::all();
-
-        return Inertia::render('Posts/Show', compact('post', 'categories', 'tags'));
-    }
 
     public function create()
     {

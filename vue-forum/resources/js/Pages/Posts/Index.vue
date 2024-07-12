@@ -3,7 +3,8 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import PostTile from "../../Components/PostTile.vue";
 import CategoryTile from "../../Components/CategoryTile.vue";
 import Pagination from "../../Components/Pagination.vue";
-import { Link, useForm } from "@inertiajs/vue3";
+import { Link, router } from "@inertiajs/vue3";
+import { ref } from "vue";
 import Multiselect from "@/Components/Multiselect.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 
@@ -11,32 +12,31 @@ const props = defineProps({
     categories: { type: Array, required: true },
     tags: { type: Array, required: true },
     posts: { type: Object, required: true },
-    currentCategory: { type: Object, required: true },
+    currentCategory: { type: Object, default: null },
     currentTags: { type: Array, required: true, default: [] },
 });
 
-const tagsFilter = useForm({
+const tagsFilter = ref({
     tags: props.currentTags,
 });
 
-console.log(tagsFilter.tags);
-
 const tagsFilterSubmit = () => {
-    // kurwa chuj z tym bo id same tu leca :/
-    const tag = tagsFilter.tags.map((tag) => tag.id);
-    tagsFilter.get(route("posts.index", { tag }), { preserveState: true });
+    const tagIds = tagsFilter.value.tags.map((tag) => tag.id);
+    router.get(route("posts.index", { tag: tagIds }));
+};
+
+const resetTags = () => {
+    router.get(route("posts.index"));
 };
 </script>
 
 <template>
     <AppLayout>
-        <!-- Category Section Header -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
             <h2 class="text-2xl font-semibold text-gray-800 mb-4">
                 Najpopularniejsze kategorie
             </h2>
 
-            <!-- Category Tiles -->
             <div
                 class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4"
             >
@@ -50,7 +50,6 @@ const tagsFilterSubmit = () => {
             </div>
         </div>
 
-        <!-- Post Section Header -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
             <div class="py-6 flex justify-between items-center">
                 <h2 class="text-2xl font-semibold text-gray-800 mb-4">
@@ -84,23 +83,23 @@ const tagsFilterSubmit = () => {
                     class="w-full p-2 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <form @submit.prevent="tagsFilterSubmit" class="space-y-4">
-                    <label class="block text-gray-700">
-                        Filtruj po tagach
-                    </label>
+                    <label class="block text-gray-700">Filtruj po tagach</label>
                     <Multiselect
                         :options="tags"
                         v-model="tagsFilter.tags"
                         class="w-full p-2"
                         xl
                     />
-                    <PrimaryButton class="mr-2">Filtruj</PrimaryButton>
-                    <PrimaryButton>Resetuj</PrimaryButton>
+                    <PrimaryButton class="mr-2" type="submit"
+                        >Filtruj</PrimaryButton
+                    >
+                    <PrimaryButton type="button" @click="resetTags"
+                        >Resetuj</PrimaryButton
+                    >
                 </form>
             </div>
 
-            <!-- Post Listings -->
             <div class="grid grid-cols-1 gap-6" v-if="posts.data.length">
-                <!-- Iterate through posts -->
                 <PostTile
                     v-for="post in posts.data"
                     :key="post.id"
