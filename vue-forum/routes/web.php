@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Web\CategoryController;
+use App\Http\Controllers\Web\CommentController;
+use App\Http\Controllers\Web\PostController;
+use App\Http\Controllers\Web\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/posts/category');
@@ -28,4 +28,4 @@ Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show')
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
