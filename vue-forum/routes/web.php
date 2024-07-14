@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\PostController as ApiPostController;
 use App\Http\Controllers\Web\CategoryController;
 use App\Http\Controllers\Web\CommentController;
 use App\Http\Controllers\Web\PostController;
@@ -27,5 +28,9 @@ Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show')
 
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+
+//api
+
+Route::get('/api/posts', [ApiPostController::class, 'index'])->name('api.posts.index');
 
 require __DIR__ . '/auth.php';
