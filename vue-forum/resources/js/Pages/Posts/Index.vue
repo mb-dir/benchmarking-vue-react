@@ -7,6 +7,7 @@ import { Link, router } from "@inertiajs/vue3";
 import { ref } from "vue";
 import Multiselect from "@/Components/Multiselect.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import PostSearchInput from "@/Components/PostSearchInput.vue";
 
 const props = defineProps({
     categories: { type: Array, required: true },
@@ -77,11 +78,12 @@ const resetTags = () => {
             </div>
 
             <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-                <input
+                <!-- <input
                     type="search"
                     placeholder="Wyszukaj post (tytuł, zawartość)"
                     class="w-full p-2 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
+                /> -->
+                <PostSearchInput />
                 <form @submit.prevent="tagsFilterSubmit" class="space-y-4">
                     <label class="block text-gray-700">Filtruj po tagach</label>
                     <Multiselect
