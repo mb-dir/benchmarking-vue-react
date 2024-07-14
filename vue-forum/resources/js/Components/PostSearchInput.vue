@@ -1,8 +1,8 @@
 <script setup>
 import { ref, watch } from "vue";
+import { Link, router } from "@inertiajs/vue3";
+import Spinner from "./Spinner.vue";
 import PrimaryButton from "./PrimaryButton.vue";
-import DangerButton from "./DangerButton.vue";
-import { Link } from "@inertiajs/vue3";
 
 const results = ref();
 const search = ref("");
@@ -22,10 +22,6 @@ function onFocus() {
 
 function onFocusOut() {
     isFocused.value = false;
-}
-
-function onSearchClick() {
-    onFocusOut();
 }
 
 watch(search, (search) => {
@@ -59,7 +55,7 @@ watch(search, (search) => {
             <input
                 v-model="search"
                 placeholder="Wyszukaj post (tytuł, zawartość)"
-                class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full p-3 border border-gray-300 rounded focus:outline-none"
                 type="search"
                 @focus="onFocus"
             />
@@ -84,6 +80,15 @@ watch(search, (search) => {
                     </div>
                     <div v-else>Niestety nic nie znaleźliśmy</div>
                 </template>
+                <Spinner v-else />
+                <div class="mt-4">
+                    <PrimaryButton
+                        class="mr-2"
+                        @click="router.visit(route('posts.index'))"
+                        >Pokaż wszystkie posty</PrimaryButton
+                    >
+                    <PrimaryButton @click="onFocusOut">Anuluj</PrimaryButton>
+                </div>
             </div>
         </transition>
     </div>

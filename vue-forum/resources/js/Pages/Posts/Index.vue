@@ -78,18 +78,16 @@ const resetTags = () => {
             </div>
 
             <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-                <!-- <input
-                    type="search"
-                    placeholder="Wyszukaj post (tytuł, zawartość)"
-                    class="w-full p-2 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                /> -->
-                <PostSearchInput />
-                <form @submit.prevent="tagsFilterSubmit" class="space-y-4">
+                <PostSearchInput class="mb-4" />
+                <form
+                    @submit.prevent="tagsFilterSubmit"
+                    v-if="posts.data.length > 0"
+                >
                     <label class="block text-gray-700">Filtruj po tagach</label>
                     <Multiselect
                         :options="tags"
                         v-model="tagsFilter.tags"
-                        class="w-full p-2"
+                        class="w-full mt-1 mb-2"
                         xl
                     />
                     <PrimaryButton class="mr-2" type="submit"
