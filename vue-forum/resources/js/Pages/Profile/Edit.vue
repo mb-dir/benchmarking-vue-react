@@ -12,6 +12,9 @@ defineProps({
     status: {
         type: String,
     },
+    userStats: {
+        type: Object,
+    },
 });
 </script>
 
@@ -37,6 +40,22 @@ defineProps({
 
                 <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                     <UpdatePasswordForm class="max-w-xl" />
+                </div>
+
+                <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                    <h2 class="text-2xl font-semibold mb-4">Twoje statystki</h2>
+                    <div class="text-gray-700">
+                        Dodane posty:
+                        <span class="font-medium">{{
+                            userStats.postsNumber
+                        }}</span>
+                    </div>
+                    <div class="text-gray-700">
+                        Dodane komentarze:
+                        <span class="font-medium">{{
+                            userStats.commentsNumber
+                        }}</span>
+                    </div>
                 </div>
 
                 <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">

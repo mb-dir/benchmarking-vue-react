@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
+use App\Models\Post;
 
 class ProfileController extends Controller
 {
@@ -19,9 +21,15 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): Response
     {
+        $postsNumber = Post::where('user_id', $request->user()->id)->count();
+        $commentsNumber = Comment::where('user_id', $request->user()->id)->count();
+
+        $userStats = compact('postsNumber', 'commentsNumber');
+
         return Inertia::render('Profile/Edit', [
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
             'status' => session('status'),
+            'userStats' => $userStats,
         ]);
     }
 
