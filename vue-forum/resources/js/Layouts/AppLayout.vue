@@ -62,6 +62,17 @@ const showingNavigationDropdown = ref(false);
                             >
                                 Kategorie
                             </NavLink>
+                            <NavLink
+                                v-if="$page.props.auth.user"
+                                :href="
+                                    route('posts.user.index', {
+                                        user: $page.props.auth.user,
+                                    })
+                                "
+                                :active="route().current('posts.user.index')"
+                            >
+                                Twoje posty
+                            </NavLink>
                         </div>
                     </div>
 

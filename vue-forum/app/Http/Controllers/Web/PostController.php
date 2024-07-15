@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 
 class PostController extends Controller
 {
@@ -58,6 +59,13 @@ class PostController extends Controller
             'currentCategory' => $category,
             'currentTags' => $currentTags,
         ]);
+    }
+
+    public function postUserIndex(User $user)
+    {
+        $posts = Post::where('user_id', $user->id)->with('user', 'tags', 'categories')->paginate(5);
+
+        return Inertia::render("Posts/UserIndex", compact('posts'));
     }
 
     public function show(Post $post)

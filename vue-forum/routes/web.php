@@ -19,6 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
     Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comment.update');
     Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+    Route::get('/posts/user/{user}', [PostController::class, 'postUserIndex'])->name('posts.user.index');
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
     Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
 });
