@@ -1,17 +1,20 @@
 export default {
     beforeMount(el, binding) {
         el.clickOutsideEvent = function (event) {
-            const { handler, exclude } = binding.value;
+            const { handler } = binding.value;
+            // need to convert node list to array
+            const exclude = [
+                // each element with this class will be excluded from the v-click-outside
+                ...document.querySelectorAll(".click-outside-exclude"),
+            ];
+
             let clickedOnExcludedEl = false;
 
-            // TODO - fix this
             if (exclude) {
-                if (Array.isArray(exclude)) {
-                    clickedOnExcludedEl = exclude.some((ex) => {
-                        ex.includes(event.target);
-                    });
-                } else {
-                    clickedOnExcludedEl = exclude.contains(event.target);
+                if (Array.isArray(exclude) && exclude.length > 0) {
+                    clickedOnExcludedEl = exclude.some((ex) =>
+                        ex.contains(event.target)
+                    );
                 }
             }
 
