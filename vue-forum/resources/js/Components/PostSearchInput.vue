@@ -81,12 +81,13 @@ watch(search, (search) => {
                     <div v-else>Niestety nic nie znaleźliśmy</div>
                 </template>
                 <Spinner v-else />
-                <div class="mt-4">
+                <div class="mt-4 flex flex-col sm:flex-row gap-2">
                     <PrimaryButton
-                        class="mr-2"
+                        class="sm:mr-2"
                         @click="router.visit(route('posts.index'))"
-                        >Pokaż wszystkie posty</PrimaryButton
                     >
+                        Pokaż wszystkie posty
+                    </PrimaryButton>
                     <PrimaryButton @click="onFocusOut">Anuluj</PrimaryButton>
                 </div>
             </div>

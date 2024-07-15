@@ -193,6 +193,23 @@ const showingNavigationDropdown = ref(false);
                     >
                         Posty
                     </ResponsiveNavLink>
+                    <ResponsiveNavLink
+                        :href="route('categories.index')"
+                        :active="route().current('categories.index')"
+                    >
+                        Kategorie
+                    </ResponsiveNavLink>
+                    <ResponsiveNavLink
+                        v-if="$page.props.auth.user"
+                        :href="
+                            route('posts.user.index', {
+                                user: $page.props.auth.user,
+                            })
+                        "
+                        :active="route().current('posts.user.index')"
+                    >
+                        Twoje posty
+                    </ResponsiveNavLink>
                 </div>
 
                 <!-- Responsive Settings Options -->
