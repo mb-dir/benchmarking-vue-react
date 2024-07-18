@@ -15,9 +15,9 @@ export default function CategoryTile({ category, categoryId }) {
 
     return (
         <Link
-            href={target}
+            href={target()}
             className={`bg-white text-center rounded-lg shadow-md py-2 px-4 flex items-center justify-center font-semibold ${
-                isActive ? "border-2 border-blue-500" : ""
+                isActive() ? "border-2 border-blue-500" : ""
             }`}
         >
             {category ? category.name : "Wszystkie"}
