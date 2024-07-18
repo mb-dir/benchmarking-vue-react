@@ -2,11 +2,11 @@
 import { ref } from "vue";
 import AppLayout from "@/Layouts/AppLayout";
 import PostLabels from "../../Components/PostLabels.jsx";
-import CommentTile from "../../Components/CommentTile.vue";
+import CommentTile from "../../Components/CommentTile.jsx";
 import { useForm, Link, router } from "@inertiajs/vue3";
 import DangerButton from "../../Components/DangerButton.vue";
 import PrimaryButton from "../../Components/PrimaryButton.vue";
-import PostEditModal from "./Partials/PostEditModal.vue";
+import PostEditModal from "./Partials/PostEditModal.jsx";
 
 defineProps({
     post: { type: Object, required: true },

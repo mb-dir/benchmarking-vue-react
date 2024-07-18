@@ -8,13 +8,12 @@ defineProps({
 </script>
 
 <template>
-    <Link
-        :href="route('posts.show', { post })"
-        class="bg-white rounded-lg shadow-md p-4 w-full"
-    >
-        <h3 class="text-lg font-semibold mb-2">
-            {{ post.title }}
-        </h3>
+    <div class="bg-white rounded-lg shadow-md p-4 w-full">
+        <Link :href="route('posts.show', { post })">
+            <h3 class="text-lg font-semibold mb-2 hover:text-gray-500">
+                {{ post.title }}
+            </h3></Link
+        >
 
         <p
             class="text-gray-600"
@@ -27,13 +26,9 @@ defineProps({
                 >(Twój post)</span
             >
         </p>
-        <p class="text-gray-600">
-            Kategorie:
-            <PostLabels :labels="post.categories" />
-        </p>
-        <p class="text-gray-600">
-            Tagi:
-            <PostLabels :labels="post.tags" isTagLabel />
-        </p>
-    </Link>
+        <p class="text-gray-600">Kategorie:</p>
+        <PostLabels :labels="post.categories" />
+        <p class="text-gray-600">Tagi:</p>
+        <PostLabels :labels="post.tags" isTagLabel />
+    </div>
 </template>

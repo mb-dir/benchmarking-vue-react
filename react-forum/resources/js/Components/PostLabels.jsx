@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "@inertiajs/react";
 
-const LabelList = ({ labels, isTagLabel = false }) => {
+const PostLabels = ({ labels, isTagLabel = false }) => {
     return (
         <ul className="flex flex-wrap gap-2">
             {labels.map((label) => (
@@ -24,4 +24,4 @@ const LabelList = ({ labels, isTagLabel = false }) => {
     );
 };
 
-export default LabelList;
+export default PostLabels;

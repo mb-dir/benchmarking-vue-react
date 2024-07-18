@@ -7,7 +7,7 @@ import { Link, router } from "@inertiajs/vue3";
 import { ref } from "vue";
 import Multiselect from "@/Components/Multiselect";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
-import PostSearchInput from "@/Components/PostSearchInput.vue";
+import PostSearchInput from "@/Components/PostSearchInput";
 
 const props = defineProps({
     categories: { type: Array, required: true },

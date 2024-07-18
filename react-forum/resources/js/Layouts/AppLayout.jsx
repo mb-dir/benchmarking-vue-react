@@ -30,8 +30,6 @@ const AppLayout = ({ children, header }) => {
                 toast.success(message);
             }
         }
-
-        console.log(flashMessages);
     }, [flashMessages]);
 
     return (
