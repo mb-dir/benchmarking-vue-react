@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import AppLayout from "@/Layouts/AppLayout.vue";
+import AppLayout from "@/Layouts/AppLayout";
 import PostLabels from "../../Components/PostLabels.vue";
 import CommentTile from "../../Components/CommentTile.vue";
 import { useForm, Link, router } from "@inertiajs/vue3";

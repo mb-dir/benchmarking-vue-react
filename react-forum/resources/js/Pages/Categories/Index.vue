@@ -1,5 +1,5 @@
 <script setup>
-import AppLayout from "@/Layouts/AppLayout.vue";
+import AppLayout from "@/Layouts/AppLayout";
 import CategoryTile from "../../Components/CategoryTile.vue";
 
 defineProps({

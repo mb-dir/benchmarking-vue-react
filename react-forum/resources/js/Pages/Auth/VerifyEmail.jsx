@@ -1,6 +1,6 @@
-import GuestLayout from '@/Layouts/GuestLayout';
-import PrimaryButton from '@/Components/PrimaryButton';
-import { Head, Link, useForm } from '@inertiajs/react';
+import AppLayout from "@/Layouts/AppLayout";
+import PrimaryButton from "@/Components/PrimaryButton";
+import { Head, Link, useForm } from "@inertiajs/react";
 
 export default function VerifyEmail({ status }) {
     const { post, processing } = useForm({});
@@ -8,38 +8,43 @@ export default function VerifyEmail({ status }) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('verification.send'));
+        post(route("verification.send"));
     };
 
     return (
-        <GuestLayout>
-            <Head title="Email Verification" />
+        <AppLayout>
+            <Head title="Zweryfikuj email" />
 
             <div className="mb-4 text-sm text-gray-600">
-                Thanks for signing up! Before getting started, could you verify your email address by clicking on the
-                link we just emailed to you? If you didn't receive the email, we will gladly send you another.
+                Dziękujemy za rejestrację! Zanim zaczniesz, czy możesz
+                zweryfikować swój adres e-mail, klikając na link, który właśnie
+                wysłaliśmy? Jeśli nie otrzymałeś e-maila, chętnie wyślemy go
+                ponownie.
             </div>
 
-            {status === 'verification-link-sent' && (
+            {status === "verification-link-sent" && (
                 <div className="mb-4 font-medium text-sm text-green-600">
-                    A new verification link has been sent to the email address you provided during registration.
+                    Nowy link weryfikacyjny został wysłany na adres e-mail
+                    podany podczas rejestracji.
                 </div>
             )}
 
             <form onSubmit={submit}>
                 <div className="mt-4 flex items-center justify-between">
-                    <PrimaryButton disabled={processing}>Resend Verification Email</PrimaryButton>
+                    <PrimaryButton disabled={processing}>
+                        Wyślij ponownie
+                    </PrimaryButton>
 
                     <Link
-                        href={route('logout')}
+                        href={route("logout")}
                         method="post"
                         as="button"
                         className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
-                        Log Out
+                        Wyloguj się
                     </Link>
                 </div>
             </form>
-        </GuestLayout>
+        </AppLayout>
     );
 }

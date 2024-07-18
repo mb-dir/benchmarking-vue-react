@@ -1,5 +1,5 @@
 <script setup>
-import AppLayout from "@/Layouts/AppLayout.vue";
+import AppLayout from "@/Layouts/AppLayout";
 import PostTile from "../../Components/PostTile.vue";
 import CategoryTile from "../../Components/CategoryTile.vue";
 import Pagination from "../../Components/Pagination.vue";
