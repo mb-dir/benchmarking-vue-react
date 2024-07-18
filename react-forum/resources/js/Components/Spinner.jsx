@@ -1,4 +1,5 @@
 import React from "react";
+
 const Spinner = () => {
     const spinnerStyle = {
         width: "35px",
@@ -8,11 +9,20 @@ const Spinner = () => {
         borderRadius: "50%",
         animation: "spin 1s linear infinite",
     };
-    const keyframes = ` @keyframes spin { to { transform: rotate(360deg); } } `;
+
+    const keyframes = `
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    `;
+
     return (
-        <div style="{spinnerStyle}" className="spinner">
+        <div style={spinnerStyle} className="spinner">
             <style>{keyframes}</style>
         </div>
     );
 };
+
 export default Spinner;
