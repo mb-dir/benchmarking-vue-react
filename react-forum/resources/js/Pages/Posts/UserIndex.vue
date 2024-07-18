@@ -1,7 +1,7 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout";
-import PostTile from "../../Components/PostTile.vue";
-import Pagination from "../../Components/Pagination.vue";
+import PostTile from "../../Components/PostTile";
+import Pagination from "../../Components/Pagination";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 const props = defineProps({

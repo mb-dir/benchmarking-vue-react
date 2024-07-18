@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import AppLayout from "@/Layouts/AppLayout";
-import PostLabels from "../../Components/PostLabels.vue";
+import PostLabels from "../../Components/PostLabels.jsx";
 import CommentTile from "../../Components/CommentTile.vue";
 import { useForm, Link, router } from "@inertiajs/vue3";
 import DangerButton from "../../Components/DangerButton.vue";

@@ -1,6 +1,6 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout";
-import Multiselect from "../../Components/Multiselect.vue";
+import Multiselect from "../../Components/Multiselect";
 import { useForm, Head } from "@inertiajs/vue3";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";

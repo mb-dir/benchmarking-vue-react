@@ -1,11 +1,11 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout";
-import PostTile from "../../Components/PostTile.vue";
+import PostTile from "../../Components/PostTile";
 import CategoryTile from "../../Components/CategoryTile.vue";
-import Pagination from "../../Components/Pagination.vue";
+import Pagination from "../../Components/Pagination";
 import { Link, router } from "@inertiajs/vue3";
 import { ref } from "vue";
-import Multiselect from "@/Components/Multiselect.vue";
+import Multiselect from "@/Components/Multiselect";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import PostSearchInput from "@/Components/PostSearchInput.vue";
 
