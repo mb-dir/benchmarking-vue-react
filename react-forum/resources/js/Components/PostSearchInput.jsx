@@ -3,7 +3,7 @@ import { Link, router } from "@inertiajs/react";
 import Spinner from "./Spinner";
 import PrimaryButton from "./PrimaryButton";
 
-const SearchComponent = () => {
+const SearchComponent = ({ className = "" }) => {
     const [results, setResults] = useState(null);
     const [search, setSearch] = useState("");
     const [isFocused, setIsFocused] = useState(false);
@@ -42,7 +42,7 @@ const SearchComponent = () => {
             ref={searchHtml}
             className={`relative ${
                 isFocused && search.length > 0 ? "search--open" : ""
-            }`}
+            } ${className}`}
         >
             {isFocused && search.length > 0 && (
                 <div

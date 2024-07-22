@@ -76,7 +76,6 @@ const resetTags = () => {
                     , aby dodać post
                 </div>
             </div>
-            <h1 class="click-outside-exclude">test</h1>
 
             <div class="bg-white p-6 rounded-lg shadow-md mb-6">
                 <PostSearchInput class="mb-4" />

@@ -13,11 +13,8 @@ defineProps({
             v-for="label in labels"
             :key="label.id"
             :class="[
-                'rounded-lg text-neutral-50 flex items-center mb-2',
+                'rounded-lg text-neutral-50 flex items-center mb-2 px-2 py-1 leading-snug  lg:leading-relaxed',
                 isTagLabel ? 'bg-orange-500' : 'bg-blue-500',
-                'px-2 py-1 text-sm leading-snug',
-                'md:px-3 md:py-1.5 md:text-base md:leading-normal',
-                'lg:px-4 lg:py-2 lg:text-lg lg:leading-relaxed',
             ]"
         >
             <Link
