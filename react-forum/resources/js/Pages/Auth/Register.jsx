@@ -39,7 +39,7 @@ export default function Register() {
                     </h1>
 
                     <div>
-                        <InputLabel htmlFor="name" value="Name" />
+                        <InputLabel htmlFor="name" value="Imię" />
 
                         <TextInput
                             id="name"
