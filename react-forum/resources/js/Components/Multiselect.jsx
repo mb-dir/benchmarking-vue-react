@@ -1,9 +1,18 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Checkbox from "./Checkbox";
+import useCheckedOption from "@/Hooks/useCheckedOption";
 
-export default function Multiselect({ options, required = false, xl = false }) {
-    const [model, setModel] = useState([]);
+export default function Multiselect({
+    options,
+    required = false,
+    xl = false,
+    className = "",
+    model = [],
+    setModel = () => {},
+}) {
     const [isOpen, setIsOpen] = useState(false);
+
+    const checkedOptions = useCheckedOption(model, options);
 
     const selectedOptionsText = () => {
         if (model.length === 0) {
@@ -30,13 +39,6 @@ export default function Multiselect({ options, required = false, xl = false }) {
         }
     };
 
-    useEffect(() => {
-        document.addEventListener("click", handleOutsideClick);
-        return () => {
-            document.removeEventListener("click", handleOutsideClick);
-        };
-    }, [isOpen]);
-
     const toggleOption = (option) => {
         setModel((prev) => {
             if (prev.includes(option)) {
@@ -47,9 +49,16 @@ export default function Multiselect({ options, required = false, xl = false }) {
         });
     };
 
+    useEffect(() => {
+        document.addEventListener("click", handleOutsideClick);
+        return () => {
+            document.removeEventListener("click", handleOutsideClick);
+        };
+    }, [isOpen]);
+
     return (
         <div
-            className="relative multiselect-container"
+            className={`relative multiselect-container ${className}`}
             onClick={openSelect}
             onKeyDown={(e) => e.key === "Enter" && openSelect()}
             tabIndex="0"
@@ -79,7 +88,9 @@ export default function Multiselect({ options, required = false, xl = false }) {
                         <div key={index} className="flex items-center mt-2">
                             <Checkbox
                                 id={`option-${index}`}
-                                checked={model.includes(option)}
+                                checked={checkedOptions.some(
+                                    (o) => o.id === option.id
+                                )}
                                 onChange={() => toggleOption(option)}
                                 className="mr-2"
                             />

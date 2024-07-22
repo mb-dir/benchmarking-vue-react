@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useRef } from "react";
 import { Link, router, usePage } from "@inertiajs/react";
 import AppLayout from "@/Layouts/AppLayout";
 import PostTile from "../../Components/PostTile";
@@ -9,18 +9,19 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import PostSearchInput from "@/Components/PostSearchInput";
 
 const Index = ({ categories, tags, posts, currentCategory, currentTags }) => {
-    const tagsFilter = React.useRef({ tags: currentTags });
+    const [tagsFilter, setTagsFilter] = useState(currentTags);
 
-    const tagsFilterSubmit = () => {
-        const tagIds = tagsFilter.current.tags.map((tag) => tag.id);
+    const page = usePage();
+
+    const tagsFilterSubmit = (e) => {
+        e.preventDefault();
+        const tagIds = tagsFilter.map((tag) => tag.id);
         router.get(route("posts.index", { tag: tagIds }));
     };
 
     const resetTags = () => {
         router.get(route("posts.index"));
     };
-
-    const page = usePage();
 
     return (
         <AppLayout>
@@ -78,7 +79,8 @@ const Index = ({ categories, tags, posts, currentCategory, currentTags }) => {
                             </label>
                             <Multiselect
                                 options={tags}
-                                v-model={tagsFilter.current.tags}
+                                model={tagsFilter}
+                                setModel={setTagsFilter}
                                 className="w-full mt-1 mb-2"
                                 xl
                             />
