@@ -6,7 +6,7 @@ import TextInput from "@/Components/TextInput";
 import Multiselect from "@/Components/Multiselect";
 import PrimaryButton from "@/Components/PrimaryButton";
 
-const PostEditModal = ({ post, tags, categories }) => {
+const PostEditModal = ({ show, setShow, post, tags, categories }) => {
     const cleanCategories = (categories) => {
         return categories.map(({ pivot, ...rest }) => rest);
     };
@@ -25,9 +25,8 @@ const PostEditModal = ({ post, tags, categories }) => {
         categories: cleanedCategories,
     });
 
-    const [show, setShow] = useState(false);
-
-    const submit = () => {
+    const submit = (e) => {
+        e.preventDefault();
         form.put(route("posts.update", { post }), {
             onSuccess: () => setShow(false),
         });
@@ -83,8 +82,8 @@ const PostEditModal = ({ post, tags, categories }) => {
 
                         <Multiselect
                             options={categories}
-                            value={form.data.categories}
-                            onChange={(value) =>
+                            model={form.data.categories}
+                            setModel={(value) =>
                                 form.setData("categories", value)
                             }
                         />
@@ -99,8 +98,8 @@ const PostEditModal = ({ post, tags, categories }) => {
 
                         <Multiselect
                             options={tags}
-                            value={form.data.tags}
-                            onChange={(value) => form.setData("tags", value)}
+                            model={form.data.tags}
+                            setModel={(value) => form.setData("tags", value)}
                         />
                     </div>
 

@@ -12,6 +12,7 @@ const Show = ({ post, tags, categories }) => {
     const [openEditModal, setOpenEditModal] = useState(false);
 
     const page = usePage();
+    console.log(openEditModal);
 
     const handleDelete = () => {
         router.delete(route("posts.destroy", { post }));
@@ -30,7 +31,9 @@ const Show = ({ post, tags, categories }) => {
                     {post.user.id === page.props?.auth?.user?.id && (
                         <div className="flex space-x-2">
                             <PrimaryButton
-                                onClick={() => setOpenEditModal(!openEditModal)}
+                                onClick={() =>
+                                    setOpenEditModal((prev) => !prev)
+                                }
                                 className="bg-blue-500 text-white py-1 px-3 rounded-lg hover:bg-blue-600"
                             >
                                 Edytuj
