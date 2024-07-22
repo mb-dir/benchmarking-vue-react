@@ -9,7 +9,7 @@ This project is a part of an engineering thesis aimed at comparing the performan
 ## Folder Structure
 
 - `vue-forum`: Contains the Vue.js implementation of the internet forum application.
-- `react-forum` :hourglass_flowing_sand:: Contains the React.js implementation of the internet forum application.
+- `react-forum`: Contains the React.js implementation of the internet forum application.
 
 ## Project Features
 
@@ -27,7 +27,14 @@ This project is a part of an engineering thesis aimed at comparing the performan
 
 ## How to Use
 
-Each project (`vue-forum` and `react-forum` :hourglass_flowing_sand:) contains its own set of instructions for setup and running the application. Please refer to the README files within each folder for detailed instructions.
+### Prerequiarments
+
+- Node.js(LTS)
+- PHP 8.2 or higher
+- Composer(LTS)
+- MySQL
+
+Each project ([`vue-forum`](https://github.com/mb-dir/benchmarking-vue-react/tree/master/vue-forum) and [`react-forum`](https://github.com/mb-dir/benchmarking-vue-react/tree/master/react-forum)) contains its own set of instructions for setup and running the application. Please refer to the README files within each folder for detailed instructions.
 
 ## License
 
