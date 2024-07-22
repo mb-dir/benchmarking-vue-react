@@ -3,23 +3,17 @@ import { useForm } from "@inertiajs/react";
 import Modal from "@/Components/Modal";
 import PrimaryButton from "@/Components/PrimaryButton";
 
-const CommentEditModal = ({ comment }) => {
+const CommentEditModal = ({ comment, show, setShow }) => {
     const form = useForm({
         content: comment.content,
     });
 
-    const [show, setShow] = useState(false);
-
-    const submit = () => {
+    const submit = (e) => {
+        e.preventDefault();
         form.put(route("comment.update", { comment }), {
             onSuccess: () => setShow(false),
         });
     };
-
-    useEffect(() => {
-        // Show the modal when the component is mounted
-        setShow(true);
-    }, []);
 
     return (
         <Modal show={show} onClose={() => setShow(false)}>

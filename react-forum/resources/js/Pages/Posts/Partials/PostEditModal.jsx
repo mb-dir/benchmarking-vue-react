@@ -33,11 +33,6 @@ const PostEditModal = ({ post, tags, categories }) => {
         });
     };
 
-    useEffect(() => {
-        // Show the modal when the component is mounted
-        setShow(true);
-    }, []);
-
     return (
         <Modal show={show} onClose={() => setShow(false)}>
             <form
