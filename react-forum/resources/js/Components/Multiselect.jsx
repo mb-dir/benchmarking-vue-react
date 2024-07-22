@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import Checkbox from "./Checkbox";
 import useCheckedOption from "@/Hooks/useCheckedOption";
+import Checkbox from "./Checkbox";
 
 export default function Multiselect({
     options,
@@ -11,16 +11,20 @@ export default function Multiselect({
     setModel = () => {},
 }) {
     const [isOpen, setIsOpen] = useState(false);
+    const [localModel, setLocalModel] = useState(model);
+    const checkedOptions = useCheckedOption(localModel, options);
 
-    const checkedOptions = useCheckedOption(model, options);
+    useEffect(() => {
+        setLocalModel(model);
+    }, [model]);
 
     const selectedOptionsText = () => {
-        if (model.length === 0) {
+        if (localModel.length === 0) {
             return "Wybierz opcje";
-        } else if (model.length > 0 && model.length <= 4) {
-            return model.map((option) => option.name).join(", ");
+        } else if (localModel.length > 0 && localModel.length <= 4) {
+            return localModel.map((option) => option.name).join(", ");
         } else {
-            return `Wybrano ${model.length} opcji`;
+            return `Wybrano ${localModel.length} opcji`;
         }
     };
 
@@ -32,7 +36,6 @@ export default function Multiselect({
         setIsOpen(false);
     };
 
-    // TODO - move it to smth like custom hook
     const handleOutsideClick = (e) => {
         if (isOpen && !e.target.closest(".multiselect-container")) {
             closeSelect();
@@ -40,12 +43,12 @@ export default function Multiselect({
     };
 
     const toggleOption = (option) => {
-        setModel((prev) => {
-            if (prev.includes(option)) {
-                return prev.filter((o) => o !== option);
-            } else {
-                return [...prev, option];
-            }
+        setLocalModel((prev) => {
+            const newModel = prev.includes(option)
+                ? prev.filter((o) => o.id !== option.id)
+                : [...prev, option];
+            setModel(newModel);
+            return newModel;
         });
     };
 
