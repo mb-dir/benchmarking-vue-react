@@ -51,13 +51,7 @@ const Index = ({ categories, tags, posts, currentCategory, currentTags }) => {
                                 : "Najnowsze posty"}
                         </span>
                     </h2>
-                    <Link
-                        href={route("posts.create")}
-                        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
-                    >
-                        Dodaj post
-                    </Link>
-                    {!page.props.auth.user && (
+                    {!page.props.auth.user ? (
                         <div>
                             <Link
                                 href={route("login")}
@@ -67,6 +61,13 @@ const Index = ({ categories, tags, posts, currentCategory, currentTags }) => {
                             </Link>
                             , aby dodać post
                         </div>
+                    ) : (
+                        <Link
+                            href={route("posts.create")}
+                            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+                        >
+                            Dodaj post
+                        </Link>
                     )}
                 </div>
 
