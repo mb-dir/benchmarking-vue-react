@@ -2,13 +2,10 @@
 import AppLayout from "@/Layouts/AppLayout.vue";
 import PostTile from "../../Components/PostTile.vue";
 import Pagination from "../../Components/Pagination.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 const props = defineProps({
     posts: { type: Object, required: true },
 });
-
-console.log(props.posts);
 </script>
 
 <template>

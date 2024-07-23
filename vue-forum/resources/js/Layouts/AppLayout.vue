@@ -18,8 +18,9 @@ watch(
     flashMessages,
     (value) => {
         if (Object.keys(value.errors).length > 0) {
-            for (const error of Object.values(value.errors)) {
-                toast.error(error);
+            // there could be many errors for one field
+            for (const errors of Object.values(value.errors)) {
+                errors.forEach((error) => toast.error(error));
             }
         }
         if (Object.keys(value.messages).length > 0) {

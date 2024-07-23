@@ -36,7 +36,7 @@ const PostEditModal = ({ show, setShow, post, tags, categories }) => {
         <Modal show={show} onClose={() => setShow(false)}>
             <form
                 onSubmit={submit}
-                className="flex justify-center px-4 sm:px-6 lg:px-8 mt-24"
+                className="flex justify-center px-4 sm:px-6 lg:px-8"
             >
                 <div className="w-full max-w-md">
                     <h1 className="text-3xl font-bold text-center mb-8">

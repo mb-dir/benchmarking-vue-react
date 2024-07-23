@@ -12,7 +12,6 @@ const Show = ({ post, tags, categories }) => {
     const [openEditModal, setOpenEditModal] = useState(false);
 
     const page = usePage();
-    console.log(openEditModal);
 
     const handleDelete = () => {
         router.delete(route("posts.destroy", { post }));

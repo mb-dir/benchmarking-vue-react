@@ -21,8 +21,8 @@ const AppLayout = ({ children, header }) => {
 
     useEffect(() => {
         if (Object.keys(flashMessages.errors).length > 0) {
-            for (const error of Object.values(flashMessages.errors)) {
-                toast.error(error);
+            for (const errors of Object.values(flashMessages.errors)) {
+                errors.forEach((error) => toast.error(error));
             }
         }
         if (Object.keys(flashMessages.messages).length > 0) {

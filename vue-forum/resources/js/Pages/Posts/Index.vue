@@ -71,9 +71,8 @@ const resetTags = () => {
                         :href="route('login')"
                         class="text-blue-700 underline hover:text-blue-500"
                     >
-                        Zaloguj się
-                    </Link>
-                    , aby dodać post
+                        Zaloguj się</Link
+                    >, aby dodać post
                 </div>
             </div>
 

@@ -1,7 +1,21 @@
-export default function InputLabel({ value, className = '', children, ...props }) {
+import React from "react";
+
+const InputLabel = ({ value, required, children }) => {
     return (
-        <label {...props} className={`block font-medium text-sm text-gray-700 ` + className}>
-            {value ? value : children}
+        <label className="block font-medium text-sm text-gray-700">
+            {value ? (
+                <>
+                    {value}
+                    {required && <span className="text-red-500"> *</span>}
+                </>
+            ) : (
+                <>
+                    {children}
+                    {required && <span className="text-red-500"> *</span>}
+                </>
+            )}
         </label>
     );
-}
+};
+
+export default InputLabel;
