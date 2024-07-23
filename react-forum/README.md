@@ -1,4 +1,4 @@
-# Frontend Framework Performance Comparison - Vue.js app
+# Frontend Framework Performance Comparison - React.js app
 
 ## How to Use
 
