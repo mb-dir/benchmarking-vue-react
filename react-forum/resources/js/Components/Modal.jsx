@@ -4,6 +4,7 @@ import {
     Transition,
     TransitionChild,
 } from "@headlessui/react";
+import { useEffect } from "react";
 
 export default function Modal({
     children,
@@ -25,6 +26,21 @@ export default function Modal({
         xl: "sm:max-w-xl",
         "2xl": "sm:max-w-2xl",
     }[maxWidth];
+
+    performance.mark("ModalStartRender");
+
+    useEffect(() => {
+        performance.mark("ModalEndRender");
+
+        const measure = performance.measure(
+            "ModalMeasureRender",
+            "ModalStartRender",
+            "ModalEndRender"
+        );
+        console.log(
+            `Total time for Modal render: ${measure.duration} ms, component complexity: 3`
+        );
+    }, []);
 
     return (
         <Transition show={show} leave="duration-200">

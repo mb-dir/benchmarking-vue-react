@@ -1,11 +1,28 @@
 <script setup>
-import { Link } from '@inertiajs/vue3';
+import { Link } from "@inertiajs/vue3";
+import { onBeforeMount, onMounted } from "vue";
 
 defineProps({
     href: {
         type: String,
         required: true,
     },
+});
+
+onBeforeMount(() => {
+    performance.mark("DropdownLinkStartRender");
+});
+
+onMounted(() => {
+    performance.mark("DropdownLinkEndRender");
+
+    const measure = performance.measure(
+        "DropdownLinkMeasureRender",
+        "DropdownLinkStartRender",
+        "DropdownLinkEndRender"
+    );
+    console.log(`Total time for DropdownLink render: ${measure.duration} ms, 
+component complexity: 1`);
 });
 </script>
 

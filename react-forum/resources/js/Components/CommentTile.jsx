@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { router, usePage } from "@inertiajs/react";
 import PrimaryButton from "./PrimaryButton";
 import DangerButton from "./DangerButton";
@@ -7,6 +7,21 @@ import CommentEditModal from "../Pages/Posts/Partials/CommentEditModal";
 const CommentTile = ({ comment }) => {
     const [commentEditModalOpen, setCommentEditModalOpen] = useState(false);
     const page = usePage();
+
+    performance.mark("CommentTileStartRender");
+
+    useEffect(() => {
+        performance.mark("CommentTileEndRender");
+
+        const measure = performance.measure(
+            "CommentTileMeasureRender",
+            "CommentTileStartRender",
+            "CommentTileEndRender"
+        );
+        console.log(
+            `Total time for CommentTile render: ${measure.duration} ms, component complexity: 2`
+        );
+    }, []);
 
     return (
         <div className="border-t border-gray-200 mt-4 p-4 flex justify-between">

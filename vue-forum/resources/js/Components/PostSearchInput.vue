@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, onBeforeMount, onMounted } from "vue";
 import { Link, router } from "@inertiajs/vue3";
 import Spinner from "./Spinner.vue";
 import PrimaryButton from "./PrimaryButton.vue";
@@ -35,6 +35,24 @@ watch(search, (search) => {
                 loading.value = false;
             });
     }, 250);
+});
+
+onBeforeMount(() => {
+    performance.mark("PostSearchInputStartRender");
+});
+
+onMounted(() => {
+    performance.mark("PostSearchInputEndRender");
+
+    const measure = performance.measure(
+        "PostSearchInputMeasureRender",
+        "PostSearchInputStartRender",
+        "PostSearchInputEndRender"
+    );
+    console.log(
+        `Total time for PostSearchInput render: ${measure.duration} ms, 
+component complexity: 3`
+    );
 });
 </script>
 

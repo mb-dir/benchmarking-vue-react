@@ -1,7 +1,21 @@
-import React from "react";
+import { useEffect } from "react";
 import { router } from "@inertiajs/react";
 
 const Pagination = ({ posts }) => {
+    performance.mark("PaginationStartRender");
+
+    useEffect(() => {
+        performance.mark("PaginationEndRender");
+
+        const measure = performance.measure(
+            "PaginationMeasureRender",
+            "PaginationStartRender",
+            "PaginationEndRender"
+        );
+        console.log(
+            `Total time for Pagination render: ${measure.duration} ms, component complexity: 2`
+        );
+    }, []);
     return (
         posts.last_page > 1 && (
             <div className="pagination flex justify-center items-center mt-8">

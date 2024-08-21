@@ -1,6 +1,6 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
-import { computed } from "vue";
+import { computed, onBeforeMount, onMounted } from "vue";
 
 const props = defineProps({
     category: { type: Object, default: null, required: false },
@@ -18,6 +18,23 @@ const isActive = computed(() => {
     if (props.categoryId === props.category?.id) return true;
     if (!props.categoryId && !props.category) return true;
     return false;
+});
+
+onBeforeMount(() => {
+    performance.mark("CategoryTileStartRender");
+});
+
+onMounted(() => {
+    performance.mark("CategoryTileEndRender");
+
+    const measure = performance.measure(
+        "CategoryTileMeasureRender",
+        "CategoryTileStartRender",
+        "CategoryTileEndRender"
+    );
+    console.log(
+        `Total time for CategoryTile render: ${measure.duration} ms, component complexity: 2`
+    );
 });
 </script>
 

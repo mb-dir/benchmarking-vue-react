@@ -1,9 +1,26 @@
 <script setup>
+import { onBeforeMount, onMounted } from "vue";
 defineProps({
     value: {
         type: String,
     },
     required: { type: Boolean, default: false },
+});
+
+onBeforeMount(() => {
+    performance.mark("InputLabelStartRender");
+});
+
+onMounted(() => {
+    performance.mark("InputLabelEndRender");
+
+    const measure = performance.measure(
+        "InputLabelMeasureRender",
+        "InputLabelStartRender",
+        "InputLabelEndRender"
+    );
+    console.log(`Total time for InputLabel render: ${measure.duration} ms, 
+component complexity: 1`);
 });
 </script>
 

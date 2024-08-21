@@ -37,6 +37,21 @@ const SearchComponent = ({ className = "" }) => {
         }, 250);
     }, [search]);
 
+    performance.mark("PostSearchInputStartRender");
+
+    useEffect(() => {
+        performance.mark("PostSearchInputEndRender");
+
+        const measure = performance.measure(
+            "PostSearchInputMeasureRender",
+            "PostSearchInputStartRender",
+            "PostSearchInputEndRender"
+        );
+        console.log(
+            `Total time for PostSearchInput render: ${measure.duration} ms, component complexity: 3`
+        );
+    }, []);
+
     return (
         <div
             ref={searchHtml}
