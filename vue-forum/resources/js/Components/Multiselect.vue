@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onBeforeMount, onMounted } from "vue";
+import { ref, computed } from "vue";
 import Checkbox from "./Checkbox.vue";
 
 const props = defineProps({
@@ -28,22 +28,6 @@ function openSelect() {
 function closeSelect() {
     isOpen.value = false;
 }
-
-onBeforeMount(() => {
-    performance.mark("MultiselectStartRender");
-});
-
-onMounted(() => {
-    performance.mark("MultiselectEndRender");
-
-    const measure = performance.measure(
-        "MultiselectMeasureRender",
-        "MultiselectStartRender",
-        "MultiselectEndRender"
-    );
-    console.log(`Total time for Multiselect render: ${measure.duration} ms, 
-component complexity: 3`);
-});
 </script>
 
 <template>

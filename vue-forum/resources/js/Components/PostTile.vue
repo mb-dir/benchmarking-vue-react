@@ -1,26 +1,9 @@
 <script setup>
-import { onMounted, onBeforeMount } from "vue";
 import { Link } from "@inertiajs/vue3";
 import PostLabels from "./PostLabels.vue";
 
 defineProps({
     post: { type: Object, required: true },
-});
-
-onBeforeMount(() => {
-    performance.mark("PostTileStartRender");
-});
-
-onMounted(() => {
-    performance.mark("PostTileEndRender");
-
-    const measure = performance.measure(
-        "PostTileMeasureRender",
-        "PostTileStartRender",
-        "PostTileEndRender"
-    );
-    console.log(`Total time for PostTile render: ${measure.duration} ms, 
-component complexity: 2`);
 });
 </script>
 

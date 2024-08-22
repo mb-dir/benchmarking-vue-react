@@ -1,5 +1,4 @@
 import { Link } from "@inertiajs/react";
-import { useEffect } from "react";
 
 export default function CategoryTile({ category, categoryId }) {
     const target = () => {
@@ -13,21 +12,6 @@ export default function CategoryTile({ category, categoryId }) {
         if (!categoryId && !category) return true;
         return false;
     };
-
-    performance.mark("CategoryTileStartRender");
-
-    useEffect(() => {
-        performance.mark("CategoryTileEndRender");
-
-        const measure = performance.measure(
-            "CategoryTileMeasureRender",
-            "CategoryTileStartRender",
-            "CategoryTileEndRender"
-        );
-        console.log(
-            `Total time for CategoryTile render: ${measure.duration} ms, component complexity: 2`
-        );
-    }, []);
 
     return (
         <Link

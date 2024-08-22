@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, onUnmounted, watch, onBeforeMount } from "vue";
+import { computed, onMounted, onUnmounted, watch } from "vue";
 
 const props = defineProps({
     show: {
@@ -56,22 +56,6 @@ const maxWidthClass = computed(() => {
         xl: "sm:max-w-xl",
         "2xl": "sm:max-w-2xl",
     }[props.maxWidth];
-});
-
-onBeforeMount(() => {
-    performance.mark("ModalStartRender");
-});
-
-onMounted(() => {
-    performance.mark("ModalEndRender");
-
-    const measure = performance.measure(
-        "ModalMeasureRender",
-        "ModalStartRender",
-        "ModalEndRender"
-    );
-    console.log(`Total time for Modal render: ${measure.duration} ms, 
-component complexity: 3`);
 });
 </script>
 

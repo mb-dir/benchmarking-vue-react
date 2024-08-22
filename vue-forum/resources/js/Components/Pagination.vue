@@ -1,24 +1,7 @@
 <script setup>
-import { onBeforeMount, onMounted } from "vue";
 import { router } from "@inertiajs/vue3";
 defineProps({
     posts: { type: Object, required: true },
-});
-
-onBeforeMount(() => {
-    performance.mark("PaginationStartRender");
-});
-
-onMounted(() => {
-    performance.mark("PaginationEndRender");
-
-    const measure = performance.measure(
-        "PaginationMeasureRender",
-        "PaginationStartRender",
-        "PaginationEndRender"
-    );
-    console.log(`Total time for Pagination render: ${measure.duration} ms, 
-component complexity: 2`);
 });
 </script>
 

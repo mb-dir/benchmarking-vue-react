@@ -1,25 +1,10 @@
-import { useEffect } from "react";
+import React from "react";
 import { Link, usePage } from "@inertiajs/react";
 import PostLabels from "./PostLabels";
 
 const PostTile = ({ post }) => {
     const page = usePage();
     const isAuthor = post.user.id === page.props?.auth?.user?.id;
-
-    performance.mark("PostTileStartRender");
-
-    useEffect(() => {
-        performance.mark("PostTileEndRender");
-
-        const measure = performance.measure(
-            "PostTileMeasureRender",
-            "PostTileStartRender",
-            "PostTileEndRender"
-        );
-        console.log(
-            `Total time for PostTile render: ${measure.duration} ms, component complexity: 2`
-        );
-    }, []);
 
     return (
         <div className="bg-white rounded-lg shadow-md p-4 w-full">

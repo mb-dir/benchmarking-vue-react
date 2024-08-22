@@ -1,23 +1,3 @@
-<script setup>
-import { onBeforeMount, onMounted } from "vue";
-
-onBeforeMount(() => {
-    performance.mark("SpinnerStartRender");
-});
-
-onMounted(() => {
-    performance.mark("SpinnerEndRender");
-
-    const measure = performance.measure(
-        "SpinnerMeasureRender",
-        "SpinnerStartRender",
-        "SpinnerEndRender"
-    );
-    console.log(`Total time for Spinner render: ${measure.duration} ms, 
-component complexity: 1`);
-});
-</script>
-
 <template>
     <div class="spinner"></div>
 </template>

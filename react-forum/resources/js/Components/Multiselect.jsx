@@ -59,21 +59,6 @@ export default function Multiselect({
         };
     }, [isOpen]);
 
-    performance.mark("MultiselectStartRender");
-
-    useEffect(() => {
-        performance.mark("MultiselectEndRender");
-
-        const measure = performance.measure(
-            "MultiselectMeasureRender",
-            "MultiselectStartRender",
-            "MultiselectEndRender"
-        );
-        console.log(
-            `Total time for Multiselect render: ${measure.duration} ms, component complexity: 3`
-        );
-    }, []);
-
     return (
         <div
             className={`relative multiselect-container ${className}`}

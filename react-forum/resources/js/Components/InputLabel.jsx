@@ -1,20 +1,6 @@
-import { useEffect } from "react";
+import React from "react";
 
 const InputLabel = ({ value, required, children }) => {
-    performance.mark("InputLabelStartRender");
-
-    useEffect(() => {
-        performance.mark("InputLabelEndRender");
-
-        const measure = performance.measure(
-            "InputLabelMeasureRender",
-            "InputLabelStartRender",
-            "InputLabelEndRender"
-        );
-        console.log(
-            `Total time for InputLabel render: ${measure.duration} ms, component complexity: 1`
-        );
-    }, []);
     return (
         <label className="block font-medium text-sm text-gray-700">
             {value ? (

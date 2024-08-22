@@ -1,26 +1,9 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
-import { onBeforeMount, onMounted } from "vue";
 
 defineProps({
     labels: { type: Array, required: true },
     isTagLabel: { type: Boolean, default: false },
-});
-
-onBeforeMount(() => {
-    performance.mark("PostLabelsStartRender");
-});
-
-onMounted(() => {
-    performance.mark("PostLabelsEndRender");
-
-    const measure = performance.measure(
-        "PostLabelsMeasureRender",
-        "PostLabelsStartRender",
-        "PostLabelsEndRender"
-    );
-    console.log(`Total time for PostLabels render: ${measure.duration} ms, 
-component complexity: 1`);
 });
 </script>
 

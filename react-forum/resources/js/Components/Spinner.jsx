@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React from "react";
 
 const Spinner = () => {
     const spinnerStyle = {
@@ -17,21 +17,6 @@ const Spinner = () => {
             }
         }
     `;
-
-    performance.mark("SpinnerStartRender");
-
-    useEffect(() => {
-        performance.mark("SpinnerEndRender");
-
-        const measure = performance.measure(
-            "SpinnerMeasureRender",
-            "SpinnerStartRender",
-            "SpinnerEndRender"
-        );
-        console.log(
-            `Total time for Spinner render: ${measure.duration} ms, component complexity: 1`
-        );
-    }, []);
 
     return (
         <div style={spinnerStyle} className="spinner">

@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onBeforeMount, onMounted } from "vue";
+import { computed } from "vue";
 
 const emit = defineEmits(["update:checked"]);
 
@@ -21,22 +21,6 @@ const proxyChecked = computed({
     set(val) {
         emit("update:checked", val);
     },
-});
-
-onBeforeMount(() => {
-    performance.mark("CheckboxStartRender");
-});
-
-onMounted(() => {
-    performance.mark("CheckboxEndRender");
-
-    const measure = performance.measure(
-        "CheckboxMeasureRender",
-        "CheckboxStartRender",
-        "CheckboxEndRender"
-    );
-    console.log(`Total time for Checkbox render: ${measure.duration} ms, 
-component complexity: 2`);
 });
 </script>
 

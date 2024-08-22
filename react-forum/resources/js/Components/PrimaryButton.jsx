@@ -1,20 +1,4 @@
-import { useEffect } from "react";
-
 export default function PrimaryButton({ className = "", children, ...props }) {
-    performance.mark("PrimaryButtonStartRender");
-
-    useEffect(() => {
-        performance.mark("PrimaryButtonEndRender");
-
-        const measure = performance.measure(
-            "PrimaryButtonMeasureRender",
-            "PrimaryButtonStartRender",
-            "PrimaryButtonEndRender"
-        );
-        console.log(
-            `Total time for PrimaryButton render: ${measure.duration} ms, component complexity: 1`
-        );
-    }, []);
     return (
         <button
             {...props}

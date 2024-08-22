@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onBeforeMount, onMounted } from "vue";
+import { ref } from "vue";
 import { router } from "@inertiajs/vue3";
 import PrimaryButton from "./PrimaryButton.vue";
 import DangerButton from "./DangerButton.vue";
@@ -10,22 +10,6 @@ defineProps({
 });
 
 const commentEditModalOpen = ref(false);
-
-onBeforeMount(() => {
-    performance.mark("CommentTileStartRender");
-});
-
-onMounted(() => {
-    performance.mark("CommentTileEndRender");
-
-    const measure = performance.measure(
-        "CommentTileMeasureRender",
-        "CommentTileStartRender",
-        "CommentTileEndRender"
-    );
-    console.log(`Total time for CommentTile render: ${measure.duration} ms, 
-component complexity: 2`);
-});
 </script>
 
 <template>

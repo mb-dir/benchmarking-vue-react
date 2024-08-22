@@ -1,21 +1,7 @@
-import { useEffect } from "react";
+import React from "react";
 import { Link } from "@inertiajs/react";
 
 const PostLabels = ({ labels, isTagLabel = false }) => {
-    performance.mark("PostLabelsStartRender");
-
-    useEffect(() => {
-        performance.mark("PostLabelsEndRender");
-
-        const measure = performance.measure(
-            "PostLabelsMeasureRender",
-            "PostLabelsStartRender",
-            "PostLabelsEndRender"
-        );
-        console.log(
-            `Total time for PostLabels render: ${measure.duration} ms, component complexity: 1`
-        );
-    }, []);
     return (
         <ul className="flex flex-wrap gap-2">
             {labels.map((label) => (
