@@ -1,4 +1,5 @@
 import React from "react";
+import useRenderCount from "@/Hooks/useRenderCount";
 
 const Spinner = () => {
     const spinnerStyle = {
@@ -17,6 +18,8 @@ const Spinner = () => {
             }
         }
     `;
+
+    useRenderCount();
 
     return (
         <div style={spinnerStyle} className="spinner">

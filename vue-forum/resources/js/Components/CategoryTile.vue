@@ -1,6 +1,7 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
 import { computed } from "vue";
+import { useRenderCount } from "@/Composables/useRenderCount";
 
 const props = defineProps({
     category: { type: Object, default: null, required: false },
@@ -19,6 +20,8 @@ const isActive = computed(() => {
     if (!props.categoryId && !props.category) return true;
     return false;
 });
+
+useRenderCount();
 </script>
 
 <template>

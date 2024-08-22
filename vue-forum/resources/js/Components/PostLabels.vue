@@ -1,10 +1,13 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
+import { useRenderCount } from "@/Composables/useRenderCount";
 
 defineProps({
     labels: { type: Array, required: true },
     isTagLabel: { type: Boolean, default: false },
 });
+
+useRenderCount();
 </script>
 
 <template>

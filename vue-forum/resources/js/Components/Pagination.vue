@@ -1,8 +1,12 @@
 <script setup>
 import { router } from "@inertiajs/vue3";
+import { useRenderCount } from "@/Composables/useRenderCount";
+
 defineProps({
     posts: { type: Object, required: true },
 });
+
+useRenderCount();
 </script>
 
 <template>

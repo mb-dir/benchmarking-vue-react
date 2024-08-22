@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import useCheckedOption from "@/Hooks/useCheckedOption";
 import Checkbox from "./Checkbox";
+import useRenderCount from "@/Hooks/useRenderCount";
 
 export default function Multiselect({
     options,
@@ -13,6 +14,8 @@ export default function Multiselect({
     const [isOpen, setIsOpen] = useState(false);
     const [localModel, setLocalModel] = useState(model);
     const checkedOptions = useCheckedOption(localModel, options);
+
+    useRenderCount();
 
     useEffect(() => {
         setLocalModel(model);

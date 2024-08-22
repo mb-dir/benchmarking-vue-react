@@ -1,10 +1,14 @@
 <script setup>
+import { useRenderCount } from "@/Composables/useRenderCount";
+
 defineProps({
     value: {
         type: String,
     },
     required: { type: Boolean, default: false },
 });
+
+useRenderCount();
 </script>
 
 <template>

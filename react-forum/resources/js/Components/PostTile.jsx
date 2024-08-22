@@ -1,8 +1,10 @@
 import React from "react";
 import { Link, usePage } from "@inertiajs/react";
 import PostLabels from "./PostLabels";
+import useRenderCount from "@/Hooks/useRenderCount";
 
 const PostTile = ({ post }) => {
+    useRenderCount();
     const page = usePage();
     const isAuthor = post.user.id === page.props?.auth?.user?.id;
 

@@ -1,10 +1,13 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
 import PostLabels from "./PostLabels.vue";
+import { useRenderCount } from "@/Composables/useRenderCount";
 
 defineProps({
     post: { type: Object, required: true },
 });
+
+useRenderCount();
 </script>
 
 <template>
