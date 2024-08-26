@@ -3,10 +3,8 @@ import { router, usePage } from "@inertiajs/react";
 import PrimaryButton from "./PrimaryButton";
 import DangerButton from "./DangerButton";
 import CommentEditModal from "../Pages/Posts/Partials/CommentEditModal";
-import useRenderCount from "@/Hooks/useRenderCount";
 
 const CommentTile = ({ comment }) => {
-    useRenderCount();
     const [commentEditModalOpen, setCommentEditModalOpen] = useState(false);
     const page = usePage();
 

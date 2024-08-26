@@ -1,9 +1,3 @@
-<script setup>
-import { useRenderCount } from "@/Composables/useRenderCount";
-
-useRenderCount();
-</script>
-
 <template>
     <div class="spinner"></div>
 </template>

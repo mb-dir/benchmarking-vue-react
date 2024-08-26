@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, router } from "@inertiajs/react";
 import Spinner from "./Spinner";
 import PrimaryButton from "./PrimaryButton";
-import useRenderCount from "@/Hooks/useRenderCount";
 
 const SearchComponent = ({ className = "" }) => {
     const [results, setResults] = useState(null);
@@ -12,8 +11,6 @@ const SearchComponent = ({ className = "" }) => {
     const searchHtml = useRef(null);
 
     let timeout = useRef(null);
-
-    useRenderCount();
 
     const target = (post) => {
         return route("posts.show", { post });

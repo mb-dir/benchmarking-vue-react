@@ -3,7 +3,6 @@ import { ref, watch } from "vue";
 import { Link, router } from "@inertiajs/vue3";
 import Spinner from "./Spinner.vue";
 import PrimaryButton from "./PrimaryButton.vue";
-import { useRenderCount } from "@/Composables/useRenderCount";
 
 const results = ref();
 const search = ref("");
@@ -37,8 +36,6 @@ watch(search, (search) => {
             });
     }, 250);
 });
-
-useRenderCount();
 </script>
 
 <template>

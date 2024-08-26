@@ -1,6 +1,5 @@
 <script setup>
-import { Link } from "@inertiajs/vue3";
-import { useRenderCount } from "@/Composables/useRenderCount";
+import { Link } from '@inertiajs/vue3';
 
 defineProps({
     href: {
@@ -8,8 +7,6 @@ defineProps({
         required: true,
     },
 });
-
-useRenderCount();
 </script>
 
 <template>

@@ -1,8 +1,7 @@
 import { Link } from "@inertiajs/react";
-import useRenderCount from "@/Hooks/useRenderCount";
 
 const DropdownLink = ({ className = "", children, ...props }) => {
-    useRenderCount();
+    performance.mark("DropdownLinkStartRender");
 
     return (
         <Link

@@ -1,8 +1,6 @@
 import { Link } from "@inertiajs/react";
-import useRenderCount from "@/Hooks/useRenderCount";
 
 export default function CategoryTile({ category, categoryId }) {
-    useRenderCount();
     const target = () => {
         return category
             ? route("posts.index", { category: category })

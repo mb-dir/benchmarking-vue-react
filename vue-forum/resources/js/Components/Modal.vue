@@ -1,6 +1,5 @@
 <script setup>
 import { computed, onMounted, onUnmounted, watch } from "vue";
-import { useRenderCount } from "@/Composables/useRenderCount";
 
 const props = defineProps({
     show: {
@@ -58,8 +57,6 @@ const maxWidthClass = computed(() => {
         "2xl": "sm:max-w-2xl",
     }[props.maxWidth];
 });
-
-useRenderCount();
 </script>
 
 <template>

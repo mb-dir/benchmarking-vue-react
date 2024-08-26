@@ -4,15 +4,12 @@ import { router } from "@inertiajs/vue3";
 import PrimaryButton from "./PrimaryButton.vue";
 import DangerButton from "./DangerButton.vue";
 import CommentEditModal from "../Pages/Posts/Partials/CommentEditModal.vue";
-import { useRenderCount } from "@/Composables/useRenderCount";
 
 defineProps({
     comment: { type: Object, required: true },
 });
 
 const commentEditModalOpen = ref(false);
-
-useRenderCount();
 </script>
 
 <template>

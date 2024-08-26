@@ -4,7 +4,6 @@ import {
     Transition,
     TransitionChild,
 } from "@headlessui/react";
-import useRenderCount from "@/Hooks/useRenderCount";
 
 export default function Modal({
     children,
@@ -26,8 +25,6 @@ export default function Modal({
         xl: "sm:max-w-xl",
         "2xl": "sm:max-w-2xl",
     }[maxWidth];
-
-    useRenderCount();
 
     return (
         <Transition show={show} leave="duration-200">

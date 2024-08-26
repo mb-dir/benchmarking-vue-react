@@ -1,6 +1,5 @@
 <script setup>
 import { computed } from "vue";
-import { useRenderCount } from "@/Composables/useRenderCount";
 
 const emit = defineEmits(["update:checked"]);
 
@@ -23,8 +22,6 @@ const proxyChecked = computed({
         emit("update:checked", val);
     },
 });
-
-useRenderCount();
 </script>
 
 <template>

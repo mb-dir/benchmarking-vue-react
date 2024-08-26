@@ -1,12 +1,11 @@
 import { useState, createContext, useContext } from "react";
-import useRenderCount from "@/Hooks/useRenderCount";
+import { Link } from "@inertiajs/react";
 import { Transition } from "@headlessui/react";
 import DropdownLink from "./DropdownLink";
 
 const DropDownContext = createContext();
 
 const Dropdown = ({ children }) => {
-    useRenderCount();
     const [open, setOpen] = useState(false);
 
     const toggleOpen = () => {

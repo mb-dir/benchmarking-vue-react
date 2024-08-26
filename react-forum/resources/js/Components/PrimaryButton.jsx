@@ -1,8 +1,4 @@
-import useRenderCount from "@/Hooks/useRenderCount";
-
 export default function PrimaryButton({ className = "", children, ...props }) {
-    useRenderCount();
-
     return (
         <button
             {...props}

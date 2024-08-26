@@ -1,9 +1,7 @@
 import React from "react";
 import { router } from "@inertiajs/react";
-import useRenderCount from "@/Hooks/useRenderCount";
 
 const Pagination = ({ posts }) => {
-    useRenderCount();
     return (
         posts.last_page > 1 && (
             <div className="pagination flex justify-center items-center mt-8">

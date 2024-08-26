@@ -1,9 +1,7 @@
 import React from "react";
 import { Link } from "@inertiajs/react";
-import useRenderCount from "@/Hooks/useRenderCount";
 
 const PostLabels = ({ labels, isTagLabel = false }) => {
-    useRenderCount();
     return (
         <ul className="flex flex-wrap gap-2">
             {labels.map((label) => (

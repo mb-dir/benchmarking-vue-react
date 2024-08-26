@@ -1,7 +1,6 @@
 <script setup>
 import { ref, computed } from "vue";
 import Checkbox from "./Checkbox.vue";
-import { useRenderCount } from "@/Composables/useRenderCount";
 
 const props = defineProps({
     options: { type: Array, required: true },
@@ -29,8 +28,6 @@ function openSelect() {
 function closeSelect() {
     isOpen.value = false;
 }
-
-useRenderCount();
 </script>
 
 <template>
